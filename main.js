@@ -6,12 +6,13 @@
    ============================================================ */
 
 // ── ALBUM DATA ──────────────────────────────────────────────
+// ── ALBUM DATA ──────────────────────────────────────────────
 const ALBUMS = [
   {
     id: 'maro',
     title: 'So Much Has Changed',
     artist: 'Maro',
-    role: 'Mastering engineer',
+    role: 'Mastering',
     year: '2026',
     img: 'images/maro.jpg',
     featured: true,
@@ -28,7 +29,7 @@ const ALBUMS = [
     title: 'Dis-topia',
     subtitle: 'Original Cast Recording',
     artist: 'Robby Good',
-    role: 'Mastering engineer',
+    role: 'Mastering',
     year: '2025',
     img: 'images/distopia.jpg',
     featured: false,
@@ -44,7 +45,7 @@ const ALBUMS = [
     title: 'The Legend of Taiko',
     subtitle: '鼓震心弦',
     artist: 'Rhymoi Music',
-    role: 'Mastering engineer',
+    role: 'Mastering',
     year: '2024',
     img: 'images/taiko.jpg',
     featured: false,
@@ -60,7 +61,7 @@ const ALBUMS = [
     id: 'phoenix',
     title: 'Transcendent Phoenix',
     artist: 'Lucina Yue',
-    role: 'Mastering engineer',
+    role: 'Mastering',
     year: '2024',
     img: 'images/phoenix.jpg',
     featured: false,
