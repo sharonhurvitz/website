@@ -386,12 +386,13 @@ button, input, textarea, select { font-family: var(--font-body); }
 /* Pull the albums a little closer to the title to reduce clunkiness */
 /* Upgrade the Discography Highlights label to a full section header */
 .home-split-layout .sec-label {
+  font-family: 'Satoshi', sans-serif; /* Adds the new font */
   font-size: 24px;          
-  font-weight: 300;         
+  font-weight: 500;         /* Satoshi looks great a bit bolder */
   color: var(--text);       
-  letter-spacing: 0.08em;   
+  letter-spacing: 0.04em;   /* Tightened up slightly for a sans-serif */
   margin-bottom: 32px;      
-  text-align: center;       /* Add this line right here */
+  text-align: center;       
 }
 
 #home-grid {
