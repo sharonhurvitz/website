@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sharon Hurvitz — Mastering Engineer & Composer</title>
-  <meta name="description" content="Sharon Hurvitz is a New York-based mastering engineer and composer. Assistant to Alan Silverman at Aerial Sound. Credits include Maro, Robby Good, Rhymoi Music, and Lucina Yue." />
+  <meta name="description" content="Sharon Hurvitz is a New York-based mastering engineer and composer. Assistant to Alan Silverman at Aerial Sound." />
   <meta property="og:title" content="Sharon Hurvitz — Mastering Engineer & Composer" />
   <meta property="og:description" content="New York-based mastering engineer and composer. Assistant to Alan Silverman at Aerial Sound." />
   <meta property="og:type" content="website" />
@@ -15,193 +15,215 @@
 </head>
 <body>
 
-  <!-- NAVIGATION -->
   <nav class="nav" id="nav">
-    <a href="#" class="nav-logo">Sharon Hurvitz</a>
-    <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#services">Services</a>
-      <a href="#music">Music</a>
-      <a href="#contact">Contact</a>
+    <a class="nav-logo" href="#" onclick="showPage('home');return false;">Sharon Hurvitz</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#" onclick="showPage('home');return false;" data-page="home" class="active">Home</a>
+      <a href="#" onclick="showPage('discography');return false;" data-page="discography">Discography</a>
+      <a href="#" onclick="showPage('bio');return false;" data-page="bio">Bio</a>
+      <a href="#" onclick="showPage('composition');return false;" data-page="composition">Composition</a>
+      <a href="#" onclick="showPage('contact');return false;" data-page="contact">Contact</a>
     </div>
-    <button class="nav-hamburger" id="navToggle" aria-label="Open menu">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
       <span></span><span></span>
     </button>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-left reveal">
-      <p class="eyebrow">New York City</p>
-      <h1 class="hero-name">Mastering<br>engineer<br><em>&amp; composer</em></h1>
-      <p class="hero-tagline">I work with artists and producers who care about how their music sounds at the finish line. Assistant to Alan Silverman at Aerial Sound.</p>
-      <div class="pill-row">
-        <span class="pill pill-purple">Mastering</span>
-        <span class="pill pill-teal">Composition</span>
-        <span class="pill">Indie</span>
-        <span class="pill">Folk</span>
-        <span class="pill">Pop</span>
-        <span class="pill">Electronic</span>
-      </div>
+  <!-- ── HOME ── -->
+  <main id="page-home" class="page active">
+    <section class="hero reveal">
+      <p class="eyebrow">Mastering engineer &amp; composer — New York</p>
+      <h1 class="hero-name">I work with artists who care<br>how their records sound<br><em>at the finish line.</em></h1>
+      <p class="hero-meta">Assistant to Alan Silverman at Aerial Sound — over 100 Grammy-nominated records. Available independently for mastering, theatrical recordings, audiophile editions, and original composition.</p>
       <div class="btn-row">
-        <a href="#contact" class="btn btn-primary">Get in touch</a>
-        <a href="#work" class="btn btn-secondary">Hear my work</a>
+        <a href="#" class="btn btn-primary" onclick="showPage('contact');return false;">Get in touch</a>
+        <a href="#" class="btn btn-secondary" onclick="showPage('discography');return false;">View credits</a>
       </div>
-    </div>
-    <div class="hero-right reveal reveal-delay">
-      <div class="cred-card">
-        <p class="cred-label">Studio</p>
-        <p class="cred-value">Aerial Sound</p>
-        <p class="cred-sub">Assistant to Alan Silverman — 100+ Grammy-nominated records</p>
-      </div>
-      <div class="cred-card">
-        <p class="cred-label">Notable credit</p>
-        <p class="cred-value">Maro — <em>So Much Has Changed</em></p>
-        <p class="cred-sub">Mastering engineer · 2026</p>
-      </div>
-      <div class="cred-card">
-        <p class="cred-label">As an artist</p>
-        <p class="cred-value">Clangen Vol. 1: Newleaf</p>
-        <p class="cred-sub">Sharon Hurvitz · self-released</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="section-header reveal">
-      <p class="section-label">What I do</p>
-      <h2 class="section-heading">Services</h2>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon">&#9670;</div>
-        <h3 class="service-title">Mastering</h3>
-        <p class="service-desc">Final-stage mastering for independent and label releases. Stereo and stem mastering. I bring the same care I learned at Aerial Sound to every project I take on myself.</p>
-        <div class="service-tags">
-          <span class="tag">Stereo mastering</span>
-          <span class="tag">Stem mastering</span>
-          <span class="tag">Streaming delivery</span>
-          <span class="tag">Vinyl prep</span>
-          <span class="tag">Cast recordings</span>
+    <section class="sec reveal">
+      <p class="sec-label">Selected credits — click any album to explore</p>
+      <div class="disc-grid" id="home-grid"></div>
+    </section>
+
+    <footer class="footer">
+      <span>© 2026 Sharon Hurvitz</span>
+      <span>sharonhurvitzmusic.com</span>
+    </footer>
+  </main>
+
+  <!-- ── DISCOGRAPHY ── -->
+  <main id="page-discography" class="page">
+    <section class="sec">
+      <p class="sec-label">Mastering credits</p>
+      <div id="album-detail"></div>
+      <div class="disc-grid" id="disc-grid"></div>
+    </section>
+    <footer class="footer">
+      <span>© 2026 Sharon Hurvitz</span>
+      <span>sharonhurvitzmusic.com</span>
+    </footer>
+  </main>
+
+  <!-- ── BIO ── -->
+  <main id="page-bio" class="page">
+    <section class="sec reveal">
+      <p class="sec-label">Bio</p>
+      <div class="bio-body">
+        <p>Sharon Hurvitz is a New York-based mastering engineer and composer. She works as assistant to Alan Silverman at Aerial Sound — one of the most decorated mastering facilities in the world, with over 100 Grammy-nominated records to its name.</p>
+        <p>Her mastering credits span an unusually wide range: from Maro's debut English-language album <em>So Much Has Changed</em>, to Robby Good's 25-song theatrical cast recording <em>Dis-topia</em>, to Rhymoi Music's SACD audiophile release <em>The Legend of Taiko</em>. That breadth — indie pop, musical theater, Chinese classical — reflects a sensibility shaped as much by her own artistic practice as by her engineering training.</p>
+        <p>As an artist, Sharon releases music under her own name. Her debut album <em>Clangen Vol. 1: Newleaf</em> is self-released and entirely self-produced — composer, performer, and mastering engineer in one. The album draws from the world of the Warriors book series, blending orchestral and ambient textures into a fully realized nine-track narrative.</p>
+        <p>Based in New York, she works internationally.</p>
+      </div>
+    </section>
+    <footer class="footer">
+      <span>© 2026 Sharon Hurvitz</span>
+      <span>sharonhurvitzmusic.com</span>
+    </footer>
+  </main>
+
+  <!-- ── COMPOSITION ── -->
+  <main id="page-composition" class="page">
+    <section class="sec reveal">
+      <p class="sec-label">Composition — original releases</p>
+      <div class="comp-grid">
+
+        <div class="comp-card">
+          <img src="images/newleaf.png" alt="Clangen Vol. 1: Newleaf album art" />
+          <div class="comp-card-body">
+            <h2 class="comp-title">Clangen Vol. 1: Newleaf</h2>
+            <p class="comp-sub">Sharon Hurvitz · 2024 · Self-released</p>
+            <p class="comp-roles">Composer · Producer · Mastering engineer</p>
+            <div class="tracklist">
+              <div class="track"><span class="tn">1</span><span>Generations</span></div>
+              <div class="track"><span class="tn">2</span><span>Crossing the River</span></div>
+              <div class="track"><span class="tn">3</span><span>Newleaf</span></div>
+              <div class="track"><span class="tn">4</span><span>Ancient Tunnels</span></div>
+              <div class="track"><span class="tn">5</span><span>The Medicine Cat's Den</span></div>
+              <div class="track"><span class="tn">6</span><span>Dawn Patrol</span></div>
+              <div class="track"><span class="tn">7</span><span>The Moonstone</span></div>
+              <div class="track"><span class="tn">8</span><span>Leafbare</span></div>
+              <div class="track"><span class="tn">9</span><span>Moonhigh Vigil</span></div>
+            </div>
+            <!-- REELCRAFTER EMBED — paste your embed code below when ready -->
+            <div class="player-placeholder" id="reelcrafter-player">
+              <p>&#9654; Audio player coming soon</p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="service-card reveal reveal-delay">
-        <div class="service-icon">&#9834;</div>
-        <h3 class="service-title">Composition</h3>
-        <p class="service-desc">Original music for film, sync, and artistic projects. I make my own albums and bring that sensibility to collaborative work — I understand how a record is built from the inside out.</p>
-        <div class="service-tags">
-          <span class="tag">Sync licensing</span>
-          <span class="tag">Film &amp; TV</span>
-          <span class="tag">Collaborative</span>
-          <span class="tag">Indie / folk</span>
+
+        <div class="comp-card comp-card--cta" onclick="showPage('contact')">
+          <div class="cta-inner">
+            <span class="cta-plus">+</span>
+            <p class="cta-text">Commission a composition</p>
+            <p class="cta-sub">Film · sync · collaborative</p>
+          </div>
         </div>
+
       </div>
-    </div>
-  </section>
+    </section>
+    <footer class="footer">
+      <span>© 2026 Sharon Hurvitz</span>
+      <span>sharonhurvitzmusic.com</span>
+    </footer>
+  </main>
 
-  <!-- CREDITS -->
-  <section class="work" id="work">
-    <div class="section-header reveal">
-      <p class="section-label">Selected work</p>
-      <h2 class="section-heading">Mastering credits</h2>
-    </div>
-    <div class="credits-grid">
-
-      <div class="credit-card featured reveal">
-        <span class="featured-tag">&#9733; Notable credit</span>
-        <span class="badge badge-master">Mastering</span>
-        <div class="credit-body">
-          <p class="credit-title">So Much Has Changed</p>
-          <p class="credit-artist">Maro</p>
+  <!-- ── CONTACT ── -->
+  <main id="page-contact" class="page">
+    <section class="sec reveal">
+      <p class="sec-label">Contact</p>
+      <div class="contact-grid">
+        <div class="contact-left">
+          <p class="contact-intro">For mastering bookings, composition enquiries, or anything else — reach out directly. Response within 24–48 hours.</p>
+          <p class="contact-email">Email: <a href="mailto:sharon@sharonhurvitzmusic.com">sharon@sharonhurvitzmusic.com</a></p>
+          <p class="contact-location">Based in New York · Working internationally</p>
+          <ul class="svc-list">
+            <li>Stereo &amp; stem mastering</li>
+            <li>Streaming delivery</li>
+            <li>Vinyl preparation</li>
+            <li>Cast &amp; theatrical recordings</li>
+            <li>Audiophile / SACD</li>
+            <li>Film &amp; sync composition</li>
+          </ul>
         </div>
-        <p class="credit-note">Full-length debut English album · 2026 · Eurovision, NPR Tiny Desk, COLORS artist</p>
+
+        <!-- Replace action with your Formspree endpoint: https://formspree.io/f/YOUR_ID -->
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div class="form-row-2">
+            <div class="form-field">
+              <input type="text" name="first_name" placeholder="First name" required />
+            </div>
+            <div class="form-field">
+              <input type="text" name="last_name" placeholder="Last name" required />
+            </div>
+          </div>
+          <div class="form-field">
+            <input type="email" name="email" placeholder="Email address" required />
+          </div>
+          <div class="form-field">
+            <input type="text" name="subject" placeholder="Subject / project title" />
+          </div>
+          <div class="form-field">
+            <textarea name="message" placeholder="Message" rows="5"></textarea>
+          </div>
+
+          <p class="field-group-label">Project type</p>
+          <div class="check-grid">
+            <label class="check-item">
+              <input type="checkbox" name="project_type" value="single" />
+              Single mastering
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="project_type" value="ep" />
+              EP mastering
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="project_type" value="album" />
+              Full album mastering
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="project_type" value="composition" />
+              Composition
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="project_type" value="other" />
+              Other (explain in message)
+            </label>
+          </div>
+
+          <p class="field-group-label">Deliverables</p>
+          <div class="check-grid">
+            <label class="check-item">
+              <input type="checkbox" name="deliverables" value="stereo_wavs" />
+              Final master stereo wavs (16 &amp; 24bit)
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="deliverables" value="instrumentals" />
+              Mastered instrumentals
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="deliverables" value="ddp" />
+              DDP production master (for CD)
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="deliverables" value="vinyl" />
+              Vinyl production master
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="deliverables" value="non_mastering" />
+              Other / non-mastering inquiry
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn">Send message</button>
+        </form>
       </div>
-
-      <div class="credit-card reveal">
-        <span class="badge badge-master">Mastering</span>
-        <div class="credit-body">
-          <p class="credit-title">Dis-topia<br><span class="credit-subtitle">Original Cast Recording</span></p>
-          <p class="credit-artist">Robby Good</p>
-        </div>
-        <p class="credit-note">25-song full cast album · 2025 · Musical theater</p>
-      </div>
-
-      <div class="credit-card reveal">
-        <span class="badge badge-master">Mastering</span>
-        <div class="credit-body">
-          <p class="credit-title">The Legend of Taiko<br><span class="credit-subtitle">鼓震心弦</span></p>
-          <p class="credit-artist">Rhymoi Music</p>
-        </div>
-        <p class="credit-note">SACD · Taiko, pipa, shakuhachi &amp; guzheng · Chinese audiophile label</p>
-      </div>
-
-      <div class="credit-card reveal">
-        <span class="badge badge-master">Mastering</span>
-        <div class="credit-body">
-          <p class="credit-title">Transcendent Phoenix</p>
-          <p class="credit-artist">Lucina Yue</p>
-        </div>
-        <p class="credit-note">Mastering · Sharon Hurvitz</p>
-      </div>
-
-      <div class="credit-card booking-card reveal">
-        <span class="booking-icon">+</span>
-        <p class="booking-text">Currently booking new projects</p>
-        <a href="#contact" class="booking-cta">Work with me ↗</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ARTIST -->
-  <section class="artist" id="music">
-    <div class="artist-inner">
-      <div class="reveal">
-        <p class="section-label">As an artist</p>
-        <h2 class="section-heading">My own music</h2>
-        <p class="artist-desc">I make my own albums — which means I come to mastering as someone who knows what it's like to want a record to sound exactly right. That perspective informs everything I do for other artists.</p>
-        <a href="#" class="btn btn-secondary" target="_blank" rel="noopener">Listen on Spotify ↗</a>
-      </div>
-      <div class="album-tile reveal reveal-delay">
-        <div class="album-art">&#9835;</div>
-        <div class="album-info">
-          <p class="album-title">Clangen Vol. 1: Newleaf</p>
-          <p class="album-sub">Sharon Hurvitz · Self-released</p>
-          <p class="album-roles">Composer · Producer · Mastering engineer</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="contact-left reveal">
-      <p class="section-label">Get in touch</p>
-      <h2 class="contact-heading">Let's work<br>together</h2>
-      <p class="contact-sub">Whether you need mastering for an upcoming release or music for a project, I'd love to hear what you're working on. Response within 24–48 hours.</p>
-      <p class="contact-location">Based in New York · Working internationally</p>
-    </div>
-    <form class="contact-form reveal reveal-delay" name="contact" method="POST" data-netlify="true" action="/thanks">
-      <!-- If you deploy to Netlify, data-netlify="true" handles the form.
-           For GitHub Pages, replace with a Formspree action (see README). -->
-      <input type="text" name="name" placeholder="Your name" required />
-      <input type="email" name="email" placeholder="Email address" required />
-      <select name="service">
-        <option value="" disabled selected>I'm looking for…</option>
-        <option value="mastering">Mastering</option>
-        <option value="composition">Composition / sync</option>
-        <option value="both">Both</option>
-      </select>
-      <textarea name="message" placeholder="Tell me about your project" rows="5" required></textarea>
-      <button type="submit" class="btn btn-primary">Send message</button>
-    </form>
-  </section>
-
-  <footer class="footer">
-    <span>© 2026 Sharon Hurvitz</span>
-    <span>sharonhurvitzmusic.com</span>
-  </footer>
+    </section>
+    <footer class="footer">
+      <span>© 2026 Sharon Hurvitz</span>
+      <span>sharonhurvitzmusic.com</span>
+    </footer>
+  </main>
 
   <script src="main.js"></script>
 </body>
