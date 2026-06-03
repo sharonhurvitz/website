@@ -34,6 +34,7 @@ const ALBUMS = [
     desc: 'A 25-song original cast recording for the full theatrical production. Music by Robby Good, Matthew Deegan, and Abigail Torrence; lyrics by Matthew Deegan and Robby Good; book by Matthew Deegan.',
     meta: [
       ['Format', 'Album'],
+      ['Label',  'Robby Good Music']
       ['Genre',  'Musical Theatre'],
       ['Year',   '2025'],
     ],
@@ -52,7 +53,7 @@ const ALBUMS = [
       ['Format', 'Album'],
       ['Label',  'Rhymoi Music (瑞鸣音乐)'],
       ['Genre',  'World / classical'],
-      ['Year',   '2024'],
+      ['Year',   '2026'],
     ],
   },
   {
