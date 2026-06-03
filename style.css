@@ -565,3 +565,90 @@ button, input, textarea, select { font-family: var(--font-body); }
 @media (max-width: 520px) {
   #home-grid { grid-template-columns: 1fr !important; }
 }
+/* ── CUSTOM AUDIO PLAYER ── */
+.comp-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.track-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 0.5px solid var(--border-mid);
+  transition: opacity 0.3s var(--ease);
+}
+.track-item:last-child {
+  border-bottom: none;
+}
+
+/* Play Button */
+.play-toggle {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+.play-toggle:hover {
+  color: var(--text-mid);
+}
+.play-toggle svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Typography & Spacing */
+.track-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer; /* Makes the whole text area clickable */
+}
+.track-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+.track-time {
+  color: var(--text-muted);
+}
+
+/* The Invisible Progress Bar */
+.progress-bg {
+  width: 100%;
+  height: 1px;
+  background: transparent; /* Hidden by default */
+  position: relative;
+}
+.progress-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--text);
+  transition: width 0.1s linear;
+}
+
+/* Active Track Styling */
+.track-item.active .progress-bg {
+  background: var(--border-mid); /* Shows the track line when active */
+}
+.track-item.active .track-meta {
+  font-weight: 500;
+}
