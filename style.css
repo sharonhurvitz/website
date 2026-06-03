@@ -575,16 +575,14 @@ button, input, textarea, select { font-family: var(--font-body); }
   display: flex;
   flex-direction: column;
 }
+/* Tighter spacing between tracks */
 .track-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 0;
+  gap: 12px;
+  padding: 10px 0; 
   border-bottom: 0.5px solid var(--border-mid);
   transition: opacity 0.3s var(--ease);
-}
-.track-item:last-child {
-  border-bottom: none;
 }
 
 /* Play Button */
@@ -617,13 +615,19 @@ button, input, textarea, select { font-family: var(--font-body); }
   gap: 8px;
   cursor: pointer; /* Makes the whole text area clickable */
 }
+/* Delicate, small, neat typography */
 .track-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 11px; /* Shrunk down to be delicate */
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text);
+  letter-spacing: 0.08em; /* Wider tracking for the editorial look */
+  color: var(--text-mid); /* Softer gray/green instead of harsh dark text */
+  font-weight: 400;
+}
+.track-item.active .track-meta {
+  font-weight: 500;
+  color: var(--text); /* Only turns dark when actively playing */
 }
 .track-time {
   color: var(--text-muted);
