@@ -322,46 +322,140 @@ button, input, textarea, select { font-family: var(--font-body); }
 .cta-text { font-size: 13px; color: var(--text-mid); margin-bottom: 4px; }
 .cta-sub { font-size: 11px; color: var(--text-muted); }
 
-/* ── CONTACT ── */
-.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
-.contact-intro { font-size: 14px; color: var(--text-mid); line-height: 1.75; margin-bottom: 16px; }
-.contact-email { font-size: 13px; color: var(--text-mid); margin-bottom: 6px; }
-.contact-email a { color: var(--text); border-bottom: 0.5px solid var(--border-mid); }
-.contact-location { font-size: 12px; color: var(--text-muted); margin-bottom: 28px; }
-.svc-list { list-style: none; }
-.svc-list li {
-  font-size: 12px; color: var(--text-mid);
-  padding: 7px 0; border-bottom: 0.5px solid var(--border);
+/* ── CONTACT FORM REFINED ── */
+.contact-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 0 100px;
 }
-.svc-list li:last-child { border-bottom: none; }
+.contact-intro {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 56px;
+  color: var(--text-mid);
+}
+.contact-intro a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 
-/* Contact form */
-.contact-form { display: flex; flex-direction: column; }
-.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
-.form-field { border-bottom: 0.5px solid var(--border-mid); margin-bottom: 4px; }
-.form-field input,
-.form-field textarea {
-  width: 100%; background: transparent; border: none; outline: none;
-  font-family: var(--font-body); font-size: 13px; color: var(--text);
-  padding: 12px 0; resize: none;
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
-.form-field input::placeholder,
-.form-field textarea::placeholder { color: var(--text-muted); }
-.form-field input:focus,
-.form-field textarea:focus { border-bottom-color: var(--text); }
-.field-group-label {
-  font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--text-muted); margin-top: 22px; margin-bottom: 12px;
+.split-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
-.check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 4px; }
-.check-item {
-  display: flex; align-items: flex-start; gap: 8px;
-  font-size: 12px; color: var(--text-mid); cursor: pointer;
-  line-height: 1.45;
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-.check-item input[type="checkbox"] { margin-top: 2px; accent-color: var(--text); flex-shrink: 0; }
-.submit-btn { margin-top: 28px; align-self: flex-start; }
 
+/* Labels */
+.contact-form label, 
+.group-label {
+  font-size: 14px;
+  color: var(--text);
+}
+.contact-form .req {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+/* The Big Text Boxes */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border-mid);
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  outline: none;
+  border-radius: 0; /* Forces square corners */
+  transition: border-color 0.2s var(--ease);
+  -webkit-appearance: none; /* Kills default Apple styling */
+}
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+  border-color: var(--text);
+}
+.contact-form textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* Custom Dropdown Arrow */
+.contact-form select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%235C554D%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+}
+
+/* Checkboxes */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+}
+.checkbox-group .sub-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+.check-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+/* Force Custom Square Checkboxes */
+.check-container input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border-mid);
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+}
+.check-container input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 10px; height: 10px;
+  background: var(--text); /* Fills in with dark text color when clicked */
+}
+.check-text {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.submit-btn {
+  align-self: flex-start;
+  padding: 12px 40px;
+  margin-top: 16px;
+}
+
+@media (max-width: 600px) {
+  .split-inputs { grid-template-columns: 1fr; }
+}
 /* ── FOOTER ── */
 .footer {
   display: flex; justify-content: space-between; align-items: center;
