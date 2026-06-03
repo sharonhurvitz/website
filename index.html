@@ -87,137 +87,51 @@
   </main>
 
   <!-- ── COMPOSITION ── -->
-<ul class="track-list">
-        
-        <li class="track-item" data-src="audio/01 Generations.wav">
-          <button class="play-toggle" aria-label="Play Track">
-            <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-          </button>
-          <div class="track-details">
-            <div class="track-meta">
-              <span class="track-title">Generations</span>
-              <span class="track-time">0:00</span>
-            </div>
-            <div class="progress-bg"><div class="progress-fill"></div></div>
-          </div>
-        </li>
+  <main id="page-composition" class="page">
+    <section class="sec reveal">
+      <p class="sec-label">Composition — original releases</p>
+      <div class="comp-grid">
 
-        <li class="track-item" data-src="audio/02 Crossing the River.wav">
-          <button class="play-toggle" aria-label="Play Track">
-            <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-          </button>
-          <div class="track-details">
-            <div class="track-meta">
-              <span class="track-title">Crossing the River <span style="text-transform: none; letter-spacing: normal; color: var(--text-muted);">(written by Carl-Isaak Krulewitch)</span></span>
-              <span class="track-time">0:00</span>
+        <div class="comp-card">
+          <img src="images/newleaf.png" alt="Clangen Vol. 1: Newleaf album art" />
+          <div class="comp-card-body">
+            <h2 class="comp-title">Clangen Vol. 1: Newleaf</h2>
+            <p class="comp-sub">Sharon Hurvitz · 2024 · Self-released</p>
+            <p class="comp-roles">Composer · Producer · Mastering engineer</p>
+            <div class="tracklist">
+              <div class="track"><span class="tn">1</span><span>Generations</span></div>
+              <div class="track"><span class="tn">2</span><span>Crossing the River</span></div>
+              <div class="track"><span class="tn">3</span><span>Newleaf</span></div>
+              <div class="track"><span class="tn">4</span><span>Ancient Tunnels</span></div>
+              <div class="track"><span class="tn">5</span><span>The Medicine Cat's Den</span></div>
+              <div class="track"><span class="tn">6</span><span>Dawn Patrol</span></div>
+              <div class="track"><span class="tn">7</span><span>The Moonstone</span></div>
+              <div class="track"><span class="tn">8</span><span>Leafbare</span></div>
+              <div class="track"><span class="tn">9</span><span>Moonhigh Vigil</span></div>
             </div>
-            <div class="progress-bg"><div class="progress-fill"></div></div>
-          </div>
-        </li>
-
-        <li class="track-item" data-src="audio/03 Newleaf.wav">
-          <button class="play-toggle" aria-label="Play Track">
-            <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-          </button>
-          <div class="track-details">
-            <div class="track-meta">
-              <span class="track-title">Newleaf</span>
-              <span class="track-time">0:00</span>
+            <!-- REELCRAFTER EMBED — paste your embed code below when ready -->
+            <div class="player-placeholder" id="reelcrafter-player">
+              <p>&#9654; Audio player coming soon</p>
             </div>
-            <div class="progress-bg"><div class="progress-fill"></div></div>
           </div>
-        </li>
+        </div>
 
-        <li class="track-item" data-src="audio/04 Ancient Tunnels.wav">
-          <button class="play-toggle" aria-label="Play Track">
-            <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-          </button>
-          <div class="track-details">
-            <div class="track-meta">
-              <span class="track-title">Ancient Tunnels</span>
-              <span class="track-time">0:00</span>
-            </div>
-            <div class="progress-bg"><div class="progress-fill"></div></div>
+        <div class="comp-card comp-card--cta" onclick="showPage('contact')">
+          <div class="cta-inner">
+            <span class="cta-plus">+</span>
+            <p class="cta-text">Commission a composition</p>
+            <p class="cta-sub">Film · sync · collaborative</p>
           </div>
-        </li>
+        </div>
 
-        <li class="track-item" data-src="audio/05 The Medicine Cat's Den.wav">
-          <button class="play-toggle" aria-label="Play Track">
-            <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-          </button>
-          <div class="track-details">
-            <div class="track-meta">
-              <span class="track-title">The Medicine Cat's Den <span style="text-transform: none; letter-spacing: normal; color: var(--text-muted);">(written by Carl-Isaak Krulewitch)</span></span>
-              <span class="track-time">0:00</span>
-            </div>
-            <div class="progress-bg"><div class="progress-fill"></div></div>
-          </div>
-        </li>
+      </div>
+    </section>
+    <footer class="footer">
+      <span>© 2026 Sharon Hurvitz</span>
+      <span>sharonhurvitzmusic.com</span>
+    </footer>
+  </main>
 
-        <li class="track-item" data-src="audio/06 Dawn Patrol.wav">
-          <button class="play-toggle" aria-label="Play Track">
-            <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-          </button>
-          <div class="track-details">
-            <div class="track-meta">
-              <span class="track-title">Dawn Patrol</span>
-              <span class="track-time">0:00</span>
-            </div>
-            <div class="progress-bg"><div class="progress-fill"></div></div>
-          </div>
-        </li>
-
-        <li class="track-item" data-src="audio/07 The Moonstone.wav">
-          <button class="play-toggle" aria-label="Play Track">
-            <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-          </button>
-          <div class="track-details">
-            <div class="track-meta">
-              <span class="track-title">The Moonstone</span>
-              <span class="track-time">0:00</span>
-            </div>
-            <div class="progress-bg"><div class="progress-fill"></div></div>
-          </div>
-        </li>
-
-        <li class="track-item" data-src="audio/08 Leafbare.wav">
-          <button class="play-toggle" aria-label="Play Track">
-            <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-          </button>
-          <div class="track-details">
-            <div class="track-meta">
-              <span class="track-title">Leafbare</span>
-              <span class="track-time">0:00</span>
-            </div>
-            <div class="progress-bg"><div class="progress-fill"></div></div>
-          </div>
-        </li>
-
-        <li class="track-item" data-src="audio/09 Moonhigh Vigil.wav">
-          <button class="play-toggle" aria-label="Play Track">
-            <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
-          </button>
-          <div class="track-details">
-            <div class="track-meta">
-              <span class="track-title">Moonhigh Vigil</span>
-              <span class="track-time">0:00</span>
-            </div>
-            <div class="progress-bg"><div class="progress-fill"></div></div>
-          </div>
-        </li>
-
-      </ul>
-</section>
-  
   <!-- ── CONTACT ── -->
   <section id="page-contact" class="page sec">
   <div class="contact-wrapper">
