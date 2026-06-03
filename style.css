@@ -351,8 +351,13 @@ button, input, textarea, select { font-family: var(--font-body); }
 }
 
 /* Pull the albums a little closer to the title to reduce clunkiness */
+/* Upgrade the Discography Highlights label to a full section header */
 .home-split-layout .sec-label {
-  margin-bottom: 20px;
+  font-size: 24px;          /* Makes it significantly larger */
+  font-weight: 300;         /* Keeps it thin and elegant */
+  color: var(--text);       /* Makes it the primary dark text color */
+  letter-spacing: 0.08em;   /* Keeps that nice, wide editorial spacing */
+  margin-bottom: 32px;      /* Gives it proper breathing room above the albums */
 }
 
 #home-grid {
