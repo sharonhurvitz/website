@@ -179,6 +179,15 @@ window.openAlbum = function(id) {
   });
 };
 
+// Make sure this is intact right beneath openAlbum!
+window.closeAlbumDetail = function() {
+  const area = document.getElementById('album-detail');
+  if (area) {
+    area.innerHTML = ''; // Clears the album details
+    // Scrolls the user smoothly back to the top of the page/grid
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+  }
+};
 // ── SCROLL REVEAL ────────────────────────────────────────────
 const revealObserver = new IntersectionObserver(
   entries => {
