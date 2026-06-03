@@ -83,55 +83,6 @@ button, input, textarea, select { font-family: var(--font-body); }
 }
 
 /* ── HERO ── */
-/* ── HOME SPLIT LAYOUT ── */
-.home-split-layout {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr; /* Splits screen cleanly */
-  min-height: 85vh;
-  border-bottom: 0.5px solid var(--border);
-}
-
-/* Adjusting padding so columns line up nicely */
-.home-split-layout .hero {
-  padding: 80px 48px;
-  border-bottom: none;
-  min-height: auto;
-  justify-content: flex-start;
-}
-
-.home-split-layout .home-discography-section {
-  padding: 80px 48px;
-  border-bottom: none;
-  border-left: 0.5px solid var(--border); /* Optional vertical divider line */
-  background: var(--bg-card); /* Keeps the right side bright and clean */
-}
-
-/* Forces the grid items on home to stack elegantly into a 2x2 layout */
-#home-grid {
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 20px;
-}
-
-/* Responsive updates for tablets and mobile phones */
-@media (max-width: 1024px) {
-  .home-split-layout {
-    grid-template-columns: 1fr; /* Stack columns vertically if screen gets narrow */
-  }
-  .home-split-layout .hero {
-    padding: 60px 24px 40px;
-  }
-  .home-split-layout .home-discography-section {
-    padding: 40px 24px 60px;
-    border-left: none;
-    border-top: 0.5px solid var(--border);
-  }
-}
-
-@media (max-width: 520px) {
-  #home-grid {
-    grid-template-columns: 1fr !important; /* Stack single file on tight mobile screens */
-  }
-}
 .hero {
   padding: 72px 48px 64px;
   border-bottom: 0.5px solid var(--border);
@@ -370,4 +321,54 @@ button, input, textarea, select { font-family: var(--font-body); }
   .check-grid { grid-template-columns: 1fr; }
   .form-row-2 { grid-template-columns: 1fr; }
   .hero-name { font-size: 30px; }
+}
+
+/* ── HOME SPLIT LAYOUT (ADDED FOR V2) ── */
+.home-split-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; 
+  min-height: 85vh;
+  border-bottom: 0.5px solid var(--border);
+  align-items: start; 
+}
+
+.home-split-layout .hero {
+  padding: 80px 48px;
+  border-bottom: none;
+  min-height: auto;
+  display: block; 
+}
+
+.home-split-layout .home-discography-section {
+  padding: 80px 48px;
+  border-bottom: none;
+  border-left: 0.5px solid var(--border); 
+  background: var(--bg-card); 
+  height: 100%; 
+}
+
+#home-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .home-split-layout {
+    grid-template-columns: 1fr; 
+  }
+  .home-split-layout .hero {
+    padding: 60px 24px 40px;
+  }
+  .home-split-layout .home-discography-section {
+    padding: 40px 24px 60px;
+    border-left: none;
+    border-top: 0.5px solid var(--border);
+  }
+}
+
+@media (max-width: 520px) {
+  #home-grid {
+    grid-template-columns: 1fr !important; 
+  }
 }
