@@ -10,7 +10,7 @@ const ALBUMS = [
   {
     id: 'maro',
     title: 'So Much Has Changed',
-    artist: 'Maro',
+    artist: 'MARO',
     role: 'Mastering', 
     year: '2026',
     img: 'images/maro.jpg',
