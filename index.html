@@ -30,22 +30,25 @@
   </nav>
 
   <!-- ── HOME ── -->
-  <main id="page-home" class="page active">
-    <section class="hero reveal">
-      <p class="eyebrow">Mastering engineer &amp; composer — New York</p>
-      <h1 class="hero-name">Mastering from a <br><em>Composer's Perspective<br></em></h1>
-      <p class="hero-meta">I make my own records, which means I approach mastering as someone who understands both the care it takes to create something, and the vulnerability of handing over that creation. As assistant to Alan Silverman at Aerial Sound, I help shape records at the top of the industry. Independently, I bring that same depth of knowledge and care to artists, filmmakers, and game developers. 
-</p>
-      <div class="btn-row">
-        <a href="#" class="btn btn-primary" onclick="showPage('contact');return false;">Get in touch</a>
-        <a href="#" class="btn btn-secondary" onclick="showPage('discography');return false;">View credits</a>
-      </div>
-    </section>
+ <main id="page-home" class="page active">
+    <div class="home-split-layout reveal">
+      
+      <section class="hero">
+        <p class="eyebrow">Mastering engineer &amp; composer — New York</p>
+        <h1 class="hero-name">Mastering from a <br><em>Composer's Perspective<br></em></h1>
+        <p class="hero-meta">I make my own records, which means I approach mastering as someone who understands both the care it takes to create something, and the vulnerability of handing over that creation. As assistant to Alan Silverman at Aerial Sound, I help shape records at the top of the industry. Independently, I bring that same depth of knowledge and care to artists, filmmakers, and game developers.</p>
+        <div class="btn-row">
+          <a href="#" class="btn btn-primary" onclick="showPage('contact');return false;">Get in touch</a>
+          <a href="#" class="btn btn-secondary" onclick="showPage('discography');return false;">View credits</a>
+        </div>
+      </section>
 
-    <section class="sec reveal">
-      <p class="sec-label">Selected credits — click any album to explore</p>
-      <div class="disc-grid" id="home-grid"></div>
-    </section>
+      <section class="sec home-discography-section">
+        <p class="sec-label">Discography Highlights</p>
+        <div id="album-detail"></div> <div class="disc-grid" id="home-grid"></div>
+      </section>
+      
+    </div>
 
     <footer class="footer">
       <span>© 2026 Sharon Hurvitz</span>
