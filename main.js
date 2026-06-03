@@ -52,7 +52,7 @@ const ALBUMS = [
     meta: [
       ['Format', 'Album'],
       ['Label',  'Rhymoi Music (瑞鸣音乐)'],
-      ['Genre',  'World / classical'],
+      ['Genre',  'World / Classical'],
       ['Year',   '2026'],
     ],
   },
