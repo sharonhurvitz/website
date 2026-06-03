@@ -138,27 +138,37 @@ window.openAlbum = function(id) {
   const area = document.getElementById('album-detail');
   if (!area) return;
 
+  // Extract the 'Label' to put under credits, keep the rest for the tags row
+  let labelVal = '';
+  const tags = [];
+  album.meta.forEach(([k, v]) => {
+    if (k.toLowerCase() === 'label') {
+      labelVal = v;
+    } else {
+      tags.push(`${k}: ${v}`); // Format like "Genre: Indie pop"
+    }
+  });
+
   area.innerHTML = `
-    <div class="album-detail">
-      <div class="album-detail-inner">
-        <img src="${album.img}" alt="${album.title}" class="album-detail-img" />
-        <div class="album-detail-body">
-          <button class="detail-back" onclick="closeAlbumDetail()">Back to all credits</button>
-          ${album.featured ? '<p class="detail-featured">★ Featured credit</p>' : ''}
-          <h2 class="detail-title">${album.title}</h2>
-          ${album.subtitle ? `<p class="detail-subtitle">${album.subtitle}</p>` : ''}
-          <p class="detail-artist">${album.artist}</p>
-          <span class="detail-role-badge">${album.role}</span>
-          <p class="detail-desc">${album.desc}</p>
-          <div class="detail-meta">
-            ${album.meta.map(([k, v]) => `
-              <div class="detail-meta-row">
-                <span>${k}</span>
-                <span>${v}</span>
-              </div>
-            `).join('')}
+    <div class="album-detail-minimal">
+      <button class="detail-back" onclick="closeAlbumDetail()">Back to all credits</button>
+      
+      <div class="album-hero-split">
+        <img src="${album.img}" alt="${album.title} album art" class="album-hero-img" />
+        
+        <div class="album-hero-text">
+          <h2 class="album-hero-artist">${album.artist}</h2>
+          <h3 class="album-hero-title">"${album.title}"</h3>
+          
+          <div class="album-hero-credits">
+            <p>Credits: ${album.role}</p>
+            ${labelVal ? `<p>Label: ${labelVal}</p>` : ''}
           </div>
         </div>
+      </div>
+
+      <div class="album-hero-tags">
+        ${tags.join(' &nbsp;&nbsp;|&nbsp;&nbsp; ')}
       </div>
     </div>
   `;
@@ -168,12 +178,6 @@ window.openAlbum = function(id) {
     area.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 };
-
-window.closeAlbumDetail = function() {
-  const area = document.getElementById('album-detail');
-  if (area) area.innerHTML = '';
-};
-
 
 // ── SCROLL REVEAL ────────────────────────────────────────────
 const revealObserver = new IntersectionObserver(
