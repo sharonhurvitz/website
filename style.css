@@ -327,39 +327,49 @@ button, input, textarea, select { font-family: var(--font-body); }
 .home-split-layout {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr; 
+  max-width: 1500px; /* Stops the layout from separating infinitely on large monitors */
+  margin: 0 auto;    /* Centers the layout if the screen is wider than 1500px */
   min-height: 85vh;
   border-bottom: 0.5px solid var(--border);
-  align-items: start; 
+  align-items: stretch; 
 }
 
 .home-split-layout .hero {
-  padding: 80px 48px;
+  /* The 15% left padding pushes your text to the right, closing the gap */
+  padding: 80px 48px 80px 15%; 
   border-bottom: none;
   min-height: auto;
   display: block; 
 }
 
 .home-split-layout .home-discography-section {
-  padding: 80px 48px;
+  /* The 15% right padding squeezes the grid, making the albums smaller */
+  padding: 80px 15% 80px 48px; 
   border-bottom: none;
   border-left: 0.5px solid var(--border); 
   background: var(--bg-card); 
-  height: 100%; 
+}
+
+/* Pull the albums a little closer to the title to reduce clunkiness */
+.home-split-layout .sec-label {
+  margin-bottom: 20px;
 }
 
 #home-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr) !important;
-  gap: 20px;
+  gap: 16px; /* Slightly tighter gap to match the newly condensed cards */
+}
+
+/* Smooth adjustments for laptops and tablets */
+@media (max-width: 1200px) {
+  .home-split-layout .hero { padding: 80px 48px 80px 8%; }
+  .home-split-layout .home-discography-section { padding: 80px 8% 80px 48px; }
 }
 
 @media (max-width: 1024px) {
-  .home-split-layout {
-    grid-template-columns: 1fr; 
-  }
-  .home-split-layout .hero {
-    padding: 60px 24px 40px;
-  }
+  .home-split-layout { grid-template-columns: 1fr; }
+  .home-split-layout .hero { padding: 60px 24px 40px; }
   .home-split-layout .home-discography-section {
     padding: 40px 24px 60px;
     border-left: none;
@@ -368,7 +378,5 @@ button, input, textarea, select { font-family: var(--font-body); }
 }
 
 @media (max-width: 520px) {
-  #home-grid {
-    grid-template-columns: 1fr !important; 
-  }
+  #home-grid { grid-template-columns: 1fr !important; }
 }
