@@ -6,28 +6,26 @@
    ============================================================ */
 
 // ── ALBUM DATA ──────────────────────────────────────────────
-// ── ALBUM DATA ──────────────────────────────────────────────
 const ALBUMS = [
   {
     id: 'maro',
     title: 'So Much Has Changed',
     artist: 'Maro',
-    role: 'Mastering',
+    role: 'Mastering', 
     year: '2026',
     img: 'images/maro.jpg',
     featured: true,
     desc: 'Maro\'s full-length debut English-language album. Recorded across Lisbon and London, it features production from collaborators including Jacob Collier. Maro represented Portugal at Eurovision 2022 and has performed on NPR Tiny Desk and COLORS Berlin.',
     meta: [
       ['Format',  'Album'],
-      ['Genre',   'Indie pop / folk'],
-      ['Label',   'Independent'],
+      ['Genre',   'Indie Pop/Singer-Songwriter'],
+      ['Label',   'SECCA Records'],
       ['Year',    '2026'],
     ],
   },
   {
     id: 'distopia',
-    title: 'Dis-topia',
-    subtitle: 'Original Cast Recording',
+    title: 'Dis-topia (Original Cast Recording)',
     artist: 'Robby Good',
     role: 'Mastering',
     year: '2025',
@@ -35,8 +33,8 @@ const ALBUMS = [
     featured: false,
     desc: 'A 25-song original cast recording for the full theatrical production. Music by Robby Good, Matthew Deegan, and Abigail Torrence; lyrics by Matthew Deegan and Robby Good; book by Matthew Deegan.',
     meta: [
-      ['Format', 'Cast recording'],
-      ['Tracks', '25'],
+      ['Format', 'Album'],
+      ['Genre',  'Musical Theatre'],
       ['Year',   '2025'],
     ],
   },
@@ -51,7 +49,7 @@ const ALBUMS = [
     featured: false,
     desc: 'An audiophile SACD release from Chinese label Rhymoi Music (瑞鸣音乐). The album explores drum culture across Asia, featuring taiko and pipa alongside shakuhachi and guzheng — instruments spanning Japanese and Chinese classical traditions.',
     meta: [
-      ['Format', 'SACD'],
+      ['Format', 'Album'],
       ['Label',  'Rhymoi Music (瑞鸣音乐)'],
       ['Genre',  'World / classical'],
       ['Year',   '2024'],
@@ -62,14 +60,15 @@ const ALBUMS = [
     title: 'Transcendent Phoenix',
     artist: 'Lucina Yue',
     role: 'Mastering',
-    year: '2024',
+    year: '2025',
     img: 'images/phoenix.jpg',
     featured: false,
     desc: 'A sweeping, emotionally expansive album from vocalist and performer Lucina Yue, blending pop and classical crossover aesthetics into a dramatic full-length statement.',
     meta: [
       ['Format', 'Album'],
-      ['Genre',  'Pop / classical crossover'],
-      ['Year',   '2024'],
+      ['Label',  'Neuma Records'],
+      ['Genre',  'Global Music, Contemporary Classical, Chamber Music'],
+      ['Year',   '2025'],
     ],
   },
 ];
