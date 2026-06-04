@@ -716,6 +716,36 @@ button, input, textarea, select { font-family: var(--font-body); }
 }
 .comp-main {
   height: auto;
+  display: flex; /* Use flexbox to arrange children side-by-side */
+  flex-direction: row; /* Ensure elements flow horizontally */
+}
+
+/* Control the image size and prevent it from stretching */
+.comp-main > img {
+  width: 40%; /* Adjust this percentage to balance art vs. tracklist width */
+  max-width: 400px; /* Prevent the image from getting too large */
+  object-fit: cover;
+  align-self: flex-start; /* Keep the image at the top */
+}
+
+/* Ensure the text content takes up the remaining space */
+.comp-main .comp-card-body {
+  width: 60%; 
+  padding: 24px; /* Give the text some breathing room */
+}
+
+/* Stack the elements back vertically on smaller screens */
+@media (max-width: 1024px) {
+  .comp-main {
+    flex-direction: column;
+  }
+  .comp-main > img {
+    width: 100%;
+    max-width: none;
+  }
+  .comp-main .comp-card-body {
+    width: 100%;
+  }
 }
 .comp-sidebar {
   display: flex;
