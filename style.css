@@ -710,13 +710,14 @@ button, input, textarea, select { font-family: var(--font-body); }
 /* ── COMPOSITION LAYOUT ── */
 .comp-layout {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 16px;
+  /* Changing 2fr to 1.35fr scales the column back down to its original, familiar aesthetic */
+  grid-template-columns: 1.35fr 1fr 1fr; 
+  gap: 20px;
   align-items: start;
 }
-/* ── COMP MAIN: STACKED (FULL ARTWORK) ── */
+
+/* We remove all the overrides so it behaves exactly like the original card you loved */
 .comp-main {
-  display: block;
   height: auto;
 }
 
