@@ -715,8 +715,7 @@ button, input, textarea, select { font-family: var(--font-body); }
   align-items: start;
 }
 .comp-main {
-  height: 600px;
-  overflow-y: auto;
+  height: auto;
 }
 .comp-sidebar {
   display: flex;
@@ -728,7 +727,7 @@ button, input, textarea, select { font-family: var(--font-body); }
   flex: 1;
 }
 .comp-sidebar .single-art-wrap {
-  width: 90px;
+  width: 160px;
 }
 .comp-card--cta {
   height: 600px;
@@ -746,7 +745,7 @@ button, input, textarea, select { font-family: var(--font-body); }
 }
 .single-card:hover { border-color: var(--border-mid); transform: translateY(-2px); }
 .single-art-wrap {
-  width: 110px;
+  width: 160px;
   flex-shrink: 0;
 }
 .single-art {
