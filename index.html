@@ -232,79 +232,82 @@
 </main>
 
   <!-- ── CONTACT ── -->
-  <section id="page-contact" class="page sec">
-  <div class="contact-wrapper">
-  <p class="contact-intro">For booking mastering or composition inquiries, please email <a href="mailto:sharonrosehurvitz@gmail.com">sharonrosehurvitz@gmail.com</a>, or send a message directly through the inquiry form below.</p>
-    
-    <form class="contact-form" action="#" method="POST">
-      
-      <div class="split-inputs">
-        <div class="input-wrap">
-          <label for="fname">First Name <span class="req">(required)</span></label>
-          <input type="text" id="fname" name="fname" required>
-        </div>
-        <div class="input-wrap">
-          <label for="lname">Last Name <span class="req">(required)</span></label>
-          <input type="text" id="lname" name="lname" required>
-        </div>
-      </div>
-
-      <div class="input-wrap">
-        <label for="email">Email Address <span class="req">(required)</span></label>
-        <input type="email" id="email" name="email" required>
-      </div>
-
-      <div class="input-wrap">
-        <label for="subject">Subject/Project Title <span class="req">(required)</span></label>
-        <input type="text" id="subject" name="subject" required>
-      </div>
-
-      <div class="input-wrap">
-        <label for="message">Message <span class="req">(required)</span></label>
-        <textarea id="message" name="message" rows="6" required></textarea>
-      </div>
-
-      <div class="input-wrap">
-        <label for="project-type">Project Type</label>
-        <select id="project-type" name="project-type">
-          <option value="" disabled selected>Select an option</option>
-          <option value="Single Mastering">Single Mastering</option>
-          <option value="EP Mastering">EP Mastering</option>
-          <option value="Album Mastering">Album Mastering</option>
-          <option value="Composition Inquiry">Composition Inquiry</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-
-      <div class="checkbox-group">
-        <label class="group-label">Deliverables <span class="req">(required)</span></label>
-        <p class="sub-label">Please select all mastering deliverables required for your project</p>
+<section id="page-contact" class="page sec">
+    <div class="contact-wrapper">
+        <p class="contact-intro">For booking mastering or composition inquiries, please email <a href="mailto:sharonrosehurvitz@gmail.com">sharonrosehurvitz@gmail.com</a>, or send a message directly through the inquiry form below.</p>
         
-        <label class="check-container">
-          <input type="checkbox" name="deliverables" value="Final Master Stereo WAVs">
-          <span class="check-text">Final Master Stereo WAVs</span>
-        </label>
-        <label class="check-container">
-          <input type="checkbox" name="deliverables" value="Mastered Instrumentals">
-          <span class="check-text">Mastered Instrumentals</span>
-        </label>
-        <label class="check-container">
-          <input type="checkbox" name="deliverables" value="DDP Production Master">
-          <span class="check-text">DDP Production Master (for CD Release)</span>
-        </label>
-        <label class="check-container">
-          <input type="checkbox" name="deliverables" value="Vinyl Production Master">
-          <span class="check-text">Vinyl Production Master (for lacquer or DMM Cutting)</span>
-        </label>
-        <label class="check-container">
-          <input type="checkbox" name="deliverables" value="Other">
-          <span class="check-text">Other (Non Mastering Related Inquiry)</span>
-        </label>
-      </div>
+        <form class="contact-form" action="#" method="POST">
+            <div class="split-inputs">
+                <div class="input-wrap">
+                    <label for="fname">First Name <span class="req">(required)</span></label>
+                    <input type="text" id="fname" name="fname" autocomplete="given-name" required>
+                </div>
+                <div class="input-wrap">
+                    <label for="lname">Last Name <span class="req">(required)</span></label>
+                    <input type="text" id="lname" name="lname" autocomplete="family-name" required>
+                </div>
+            </div>
 
-      <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-    </form>
-  </div>
+            <div class="input-wrap">
+                <label for="email">Email Address <span class="req">(required)</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+
+            <div class="input-wrap">
+                <label for="subject">Subject/Project Title <span class="req">(required)</span></label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+
+            <div class="input-wrap">
+                <label for="message">Message <span class="req">(required)</span></label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+            </div>
+
+            <div class="input-wrap">
+                <label for="project-type">Project Type</label>
+                <select id="project-type" name="project-type">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Single Mastering">Single Mastering</option>
+                    <option value="EP Mastering">EP Mastering</option>
+                    <option value="Album Mastering">Album Mastering</option>
+                    <option value="Composition Inquiry">Composition Inquiry</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <label class="group-label">Deliverables <span class="req">(required)</span></label>
+                <p class="sub-label">Please select all mastering deliverables required for your project</p>
+                
+                <label class="check-container" for="deliv-wav">
+                    <input type="checkbox" id="deliv-wav" name="deliverables" value="Final Master Stereo WAVs">
+                    <span class="check-text">Final Master Stereo WAVs</span>
+                </label>
+                
+                <label class="check-container" for="deliv-inst">
+                    <input type="checkbox" id="deliv-inst" name="deliverables" value="Mastered Instrumentals">
+                    <span class="check-text">Mastered Instrumentals</span>
+                </label>
+                
+                <label class="check-container" for="deliv-ddp">
+                    <input type="checkbox" id="deliv-ddp" name="deliverables" value="DDP Production Master">
+                    <span class="check-text">DDP Production Master (for CD Release)</span>
+                </label>
+                
+                <label class="check-container" for="deliv-vinyl">
+                    <input type="checkbox" id="deliv-vinyl" name="deliverables" value="Vinyl Production Master">
+                    <span class="check-text">Vinyl Production Master (for lacquer or DMM Cutting)</span>
+                </label>
+                
+                <label class="check-container" for="deliv-other">
+                    <input type="checkbox" id="deliv-other" name="deliverables" value="Other">
+                    <span class="check-text">Other (Non Mastering Related Inquiry)</span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+        </form>
+    </div>
 </section>
 
   <script src="main.js"></script>
