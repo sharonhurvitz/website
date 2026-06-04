@@ -710,43 +710,15 @@ button, input, textarea, select { font-family: var(--font-body); }
 /* ── COMPOSITION LAYOUT ── */
 .comp-layout {
   display: grid;
-  /* Changing 2fr to 1.35fr scales the column back down to its original, familiar aesthetic */
   grid-template-columns: 1.35fr 1fr 1fr; 
   gap: 20px;
   align-items: start;
 }
 
-/* We remove all the overrides so it behaves exactly like the original card you loved */
 .comp-main {
   height: auto;
 }
 
-/* Keeps the image a perfect square, but stops it from getting huge */
-.comp-main > img {
-  width: 280px; 
-  height: 280px; 
-  margin: 40px auto 0; /* Centers it horizontally inside the card */
-  object-fit: contain; /* Ensures 100% of the artwork is visible */
-  border-radius: var(--radius); /* Subtle rounding to match the site */
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08); /* Adds a soft drop shadow */
-}
-
-.comp-main .comp-card-body {
-  width: 100%;
-  padding: 32px; 
-}
-
-/* Center the titles right under the art to make it look cohesive */
-.comp-main .comp-title,
-.comp-main .comp-sub,
-.comp-main .comp-roles {
-  text-align: center;
-}
-
-/* Keep the tracklist aligned properly */
-.comp-main .tracklist {
-  margin-top: 24px;
-}
 .comp-sidebar {
   display: flex;
   flex-direction: column;
