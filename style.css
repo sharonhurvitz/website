@@ -721,7 +721,7 @@ button, input, textarea, select { font-family: var(--font-body); }
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 600px;
+  height: auto;
 }
 .comp-sidebar .single-card {
   flex: 1;
@@ -730,7 +730,8 @@ button, input, textarea, select { font-family: var(--font-body); }
   width: 160px;
 }
 .comp-card--cta {
-  height: 600px;
+  flex: 1;
+  min-height: 120px;
 }
 
 /* Singles */
@@ -800,7 +801,7 @@ button, input, textarea, select { font-family: var(--font-body); }
 
 @media (max-width: 900px) {
   .comp-layout { grid-template-columns: 1fr; }
-  .comp-main { height: auto; overflow-y: visible; }
+  .comp-main { height: auto; }
   .comp-sidebar { height: auto; flex-direction: column; }
-  .comp-card--cta { height: 200px; }
+  .comp-card--cta { min-height: 200px; flex: none; }
 }
