@@ -324,3 +324,123 @@ if (contactForm) {
   // Re-check reveal on scroll
   window.addEventListener('scroll', checkReveal, { passive: true });
 })();
+// ── TRACKLIST AUDIO PLAYER ──────────────────────────────────
+(function initTrackPlayer() {
+  let currentAudio = null;
+  let currentTrackEl = null;
+
+  function formatTime(seconds) {
+    if (isNaN(seconds)) return '';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  }
+
+  function stopCurrent() {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+    if (currentTrackEl) {
+      currentTrackEl.classList.remove('playing');
+      const btn = currentTrackEl.querySelector('.track-play');
+      if (btn) btn.innerHTML = '&#9654;';
+      const bar = currentTrackEl.querySelector('.track-progress-bar');
+      if (bar) bar.classList.remove('visible');
+    }
+    currentAudio = null;
+    currentTrackEl = null;
+  }
+
+  function bindTracks() {
+    document.querySelectorAll('.track[data-src]').forEach(trackEl => {
+      const src = trackEl.dataset.src;
+      const btn = trackEl.querySelector('.track-play');
+      const durationEl = trackEl.querySelector('.track-duration');
+
+      // Create a hidden audio element and preload metadata for duration
+      const audio = new Audio();
+      audio.preload = 'metadata';
+      audio.src = src;
+      audio.addEventListener('loadedmetadata', () => {
+        if (durationEl) durationEl.textContent = formatTime(audio.duration);
+      });
+
+      // Build progress bar inside the track row
+      const progressBar = document.createElement('div');
+      progressBar.className = 'track-progress-bar';
+      progressBar.innerHTML = '<div class="track-progress-fill"></div>';
+      trackEl.appendChild(progressBar);
+
+      const progressFill = progressBar.querySelector('.track-progress-fill');
+
+      // Click anywhere on the track row (or the button) to toggle play
+      trackEl.addEventListener('click', (e) => {
+        // If clicking the progress bar, seek instead
+        if (e.target === progressBar || progressBar.contains(e.target)) {
+          const rect = progressBar.getBoundingClientRect();
+          const ratio = (e.clientX - rect.left) / rect.width;
+          if (currentAudio && currentTrackEl === trackEl) {
+            currentAudio.currentTime = ratio * currentAudio.duration;
+          }
+          return;
+        }
+
+        if (currentTrackEl === trackEl) {
+          // Toggle pause/play on same track
+          if (currentAudio.paused) {
+            currentAudio.play();
+            btn.innerHTML = '&#9646;&#9646;';
+          } else {
+            currentAudio.pause();
+            btn.innerHTML = '&#9654;';
+          }
+          return;
+        }
+
+        // Stop whatever was playing
+        stopCurrent();
+
+        // Play new track
+        currentAudio = audio;
+        currentTrackEl = trackEl;
+        trackEl.classList.add('playing');
+        btn.innerHTML = '&#9646;&#9646;';
+        progressBar.classList.add('visible');
+        audio.play();
+      });
+
+      // Update progress bar as audio plays
+      audio.addEventListener('timeupdate', () => {
+        if (currentTrackEl !== trackEl) return;
+        const pct = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = pct + '%';
+      });
+
+      // Auto-advance to next track
+      audio.addEventListener('ended', () => {
+        stopCurrent();
+        const allTracks = [...document.querySelectorAll('.track[data-src]')];
+        const idx = allTracks.indexOf(trackEl);
+        if (idx !== -1 && idx < allTracks.length - 1) {
+          allTracks[idx + 1].click();
+        }
+      });
+    });
+  }
+
+  // Bind on load, and re-bind if composition page is navigated to
+  bindTracks();
+
+  // Also re-bind when composition page becomes active (in case of dynamic rendering)
+  const origShowPage = window.showPage;
+  window.showPage = function(name) {
+    origShowPage(name);
+    if (name === 'composition') {
+      // Give the page a frame to render before binding
+      requestAnimationFrame(bindTracks);
+    }
+    // Stop audio when leaving composition page
+    if (name !== 'composition') stopCurrent();
+  };
+})();
