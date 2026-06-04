@@ -30,7 +30,7 @@ const ALBUMS = [
     role: 'Mastering',
     year: '2025',
     img: 'images/distopia.jpg',
-    featured: false,
+    featured: true,
     desc: 'A 25-song original cast recording for the full theatrical production. Music by Robby Good, Matthew Deegan, and Abigail Torrence; lyrics by Matthew Deegan and Robby Good; book by Matthew Deegan.',
     meta: [
       ['Format', 'Album'],
@@ -47,13 +47,13 @@ const ALBUMS = [
     role: 'Co-mastered with Alan Silverman',
     year: '2024',
     img: 'images/taiko.jpg',
-    featured: false,
+    featured: true,
     desc: 'An audiophile SACD release from Chinese label Rhymoi Music (瑞鸣音乐). The album explores drum culture across Asia, featuring taiko and pipa alongside shakuhachi and guzheng — instruments spanning Japanese and Chinese classical traditions.',
     meta: [
       ['Format', 'Album'],
       ['Label',  'Rhymoi Music (瑞鸣音乐)'],
       ['Genre',  'World / Classical'],
-      ['Year',   '2026'],
+      ['Year',   '2024'],
     ],
   },
   {
@@ -63,7 +63,7 @@ const ALBUMS = [
     role: 'Co-mastered with Alan Silverman',
     year: '2025',
     img: 'images/phoenix.jpg',
-    featured: false,
+    featured: true,
     desc: 'A sweeping, emotionally expansive album from vocalist and performer Lucina Yue, blending pop and classical crossover aesthetics into a dramatic full-length statement.',
     meta: [
       ['Format', 'Album'],
@@ -72,8 +72,105 @@ const ALBUMS = [
       ['Year',   '2025'],
     ],
   },
+  {
+    id: 'hourglass',
+    title: 'Hourglass',
+    artist: 'Hayden Miller',
+    role: 'Mastering Engineer',
+    year: '2026',
+    img: 'images/hourglass.jpg',
+    featured: false,
+    desc: 'A modern jazz album led by Hayden Miller.',
+    meta: [
+      ['Format', 'Album'],
+      ['Genre',  'Jazz']
+    ],
+  },
+  {
+    id: 'ruby',
+    title: 'Boy Man/I Walked',
+    artist: 'Ruby Pucillo',
+    role: 'Mastering Engineer',
+    year: '2026',
+    img: 'images/ruby.jpg',
+    featured: false,
+    desc: 'A jazz EP release from Ruby Pucillo.',
+    meta: [
+      ['Format', 'EP'],
+      ['Genre',  'Jazz']
+    ],
+  },
+  {
+    id: 'distopia-ep',
+    title: 'Dis-Topia Original Cast Recording E.P. (Experimental Prototype)',
+    artist: 'Robby Good',
+    role: 'Mastering Engineer',
+    year: '2024',
+    img: 'images/distopia-ep.jpg',
+    featured: false,
+    desc: 'The experimental prototype EP that laid the groundwork for the full Dis-topia cast recording.',
+    meta: [
+      ['Format', 'EP'],
+      ['Genre',  'Musical Theatre']
+    ],
+  },
+  {
+    id: 'absoluteranks',
+    title: 'FYTIW prod. ranks ddertbAg',
+    artist: 'absoluteranks',
+    role: 'Mastering Engineer',
+    year: '2026',
+    img: 'images/absoluteranks.jpg',
+    featured: false,
+    desc: 'A high-energy digicore single.',
+    meta: [
+      ['Format', 'Single'],
+      ['Genre',  'Digicore']
+    ],
+  },
+  {
+    id: 'journey1',
+    title: 'Journey to the West pt 1',
+    artist: 'ZenHow',
+    role: 'Mastering Engineer',
+    year: '2026',
+    img: 'images/journey1.jpg',
+    featured: false,
+    desc: 'Part one of ZenHow\'s hip-hop and Mandarin pop crossover project.',
+    meta: [
+      ['Format', 'Single'],
+      ['Genre',  'Hip-hop / Mandarin Pop']
+    ],
+  },
+  {
+    id: 'journey2',
+    title: 'Journey to the West pt 2',
+    artist: 'ZenHow',
+    role: 'Mastering Engineer',
+    year: '2026',
+    img: 'images/journey2.jpg',
+    featured: false,
+    desc: 'Part two of ZenHow\'s hip-hop and Mandarin pop crossover project.',
+    meta: [
+      ['Format', 'Single'],
+      ['Genre',  'Hip-hop / Mandarin Pop']
+    ],
+  },
+  {
+    id: 'built-to-love',
+    title: 'Built to Love',
+    artist: 'ZenHow',
+    role: 'Mastering Engineer',
+    year: '2026',
+    img: 'images/built-to-love.jpg',
+    featured: false,
+    desc: 'A collaborative Mandarin pop and hip-hop single.',
+    meta: [
+      ['Format', 'Single'],
+      ['Genre',  'Hip-hop / Mandarin Pop']
+    ],
+  }
 ];
-
 
 // ── PAGE ROUTING ─────────────────────────────────────────────
 const pages   = document.querySelectorAll('.page');
@@ -314,10 +411,12 @@ if (contactForm) {
 
 // ── INIT ─────────────────────────────────────────────────────
 (function init() {
-  // Render album grids
-  renderGrid('home-grid', ALBUMS);
+  // Render album grids (Home grid only gets the 4 featured ones)
+  const featuredAlbums = ALBUMS.filter(album => album.featured).slice(0, 4);
+  renderGrid('home-grid', featuredAlbums);
+  
+  // Discography grid gets everything
   renderGrid('disc-grid', ALBUMS);
-
   // Trigger reveal on initial page load
   requestAnimationFrame(checkReveal);
 
