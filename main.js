@@ -427,6 +427,7 @@ if (contactForm) {
 (function initTrackPlayer() {
   let currentAudio = null;
   let currentTrackEl = null;
+  let tracksInitialized = false;  // guard against double-binding
 
   function formatTime(seconds) {
     if (isNaN(seconds)) return '';
@@ -452,12 +453,16 @@ if (contactForm) {
   }
 
   function bindTracks() {
-    document.querySelectorAll('.track[data-src]').forEach(trackEl => {
+    if (tracksInitialized) return;  // only ever bind once
+    const tracks = document.querySelectorAll('.track[data-src]');
+    if (tracks.length === 0) return;  // page not rendered yet
+    tracksInitialized = true;
+
+    tracks.forEach(trackEl => {
       const src = trackEl.dataset.src;
       const btn = trackEl.querySelector('.track-play');
       const durationEl = trackEl.querySelector('.track-duration');
 
-      // Create a hidden audio element and preload metadata for duration
       const audio = new Audio();
       audio.preload = 'metadata';
       audio.src = src;
@@ -465,28 +470,25 @@ if (contactForm) {
         if (durationEl) durationEl.textContent = formatTime(audio.duration);
       });
 
-      // Build progress bar inside the track row
+      // Build progress bar
       const progressBar = document.createElement('div');
       progressBar.className = 'track-progress-bar';
       progressBar.innerHTML = '<div class="track-progress-fill"></div>';
       trackEl.appendChild(progressBar);
-
       const progressFill = progressBar.querySelector('.track-progress-fill');
 
-      // Click anywhere on the track row (or the button) to toggle play
       trackEl.addEventListener('click', (e) => {
-        // If clicking the progress bar, seek instead
-        if (e.target === progressBar || progressBar.contains(e.target)) {
-          const rect = progressBar.getBoundingClientRect();
-          const ratio = (e.clientX - rect.left) / rect.width;
+        // Seeking via progress bar
+        if (progressBar.contains(e.target)) {
           if (currentAudio && currentTrackEl === trackEl) {
-            currentAudio.currentTime = ratio * currentAudio.duration;
+            const rect = progressBar.getBoundingClientRect();
+            currentAudio.currentTime = ((e.clientX - rect.left) / rect.width) * currentAudio.duration;
           }
           return;
         }
 
         if (currentTrackEl === trackEl) {
-          // Toggle pause/play on same track
+          // Toggle same track
           if (currentAudio.paused) {
             currentAudio.play();
             btn.innerHTML = '&#9646;&#9646;';
@@ -497,26 +499,21 @@ if (contactForm) {
           return;
         }
 
-        // Stop whatever was playing
+        // New track
         stopCurrent();
-
-        // Play new track
         currentAudio = audio;
         currentTrackEl = trackEl;
         trackEl.classList.add('playing');
         btn.innerHTML = '&#9646;&#9646;';
         progressBar.classList.add('visible');
-        audio.play();
+        audio.play().catch(err => console.warn('Playback failed:', err));
       });
 
-      // Update progress bar as audio plays
       audio.addEventListener('timeupdate', () => {
         if (currentTrackEl !== trackEl) return;
-        const pct = (audio.currentTime / audio.duration) * 100;
-        progressFill.style.width = pct + '%';
+        progressFill.style.width = ((audio.currentTime / audio.duration) * 100) + '%';
       });
 
-      // Auto-advance to next track
       audio.addEventListener('ended', () => {
         stopCurrent();
         const allTracks = [...document.querySelectorAll('.track[data-src]')];
@@ -528,18 +525,18 @@ if (contactForm) {
     });
   }
 
-  // Bind on load, and re-bind if composition page is navigated to
+  // Try to bind immediately (in case composition page is default)
   bindTracks();
 
-  // Also re-bind when composition page becomes active (in case of dynamic rendering)
+  // Hook into showPage to bind on first visit and stop audio on leave
   const origShowPage = window.showPage;
   window.showPage = function(name) {
     origShowPage(name);
     if (name === 'composition') {
-      // Give the page a frame to render before binding
       requestAnimationFrame(bindTracks);
     }
-    // Stop audio when leaving composition page
-    if (name !== 'composition') stopCurrent();
+    if (name !== 'composition') {
+      stopCurrent();
+    }
   };
 })();
