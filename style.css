@@ -676,6 +676,16 @@ button, input, textarea, select { font-family: var(--font-body); }
   flex-basis: 100%;
   cursor: pointer;
   display: none;
+  position: relative;
+}
+
+.track-progress-bar::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  bottom: -10px;
 }
 .track-progress-bar.visible {
   display: block;
