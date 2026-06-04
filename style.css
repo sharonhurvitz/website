@@ -475,47 +475,46 @@ button, input, textarea, select { font-family: var(--font-body); }
 @media (max-width: 900px) {
   .nav { padding: 16px 24px; }
   
-  /* 1. The Full-Screen Overlay */
+  /* 1. The Floating Glass Card */
   .nav-links { 
     display: flex; flex-direction: column;
-    justify-content: center; align-items: center; gap: 40px;
-    position: fixed; 
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: var(--bg); /* Solid background blocks out the main page */
+    justify-content: center; align-items: center; gap: 32px;
+    position: absolute; 
+    top: calc(100% + 8px); /* Drops just below the nav bar */
+    left: 24px; right: 24px; /* Leaves a nice gap on the left and right */
+    padding: 40px 0;
+    border-radius: var(--radius-lg);
+    background: rgba(249, 247, 243, 0.85); /* Semi-transparent warm oat */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); /* Safari support */
+    border: 0.5px solid var(--border-mid);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* Soft drop shadow */
     z-index: 150; 
-    opacity: 0; pointer-events: none; /* Hidden smoothly */
-    transition: opacity 0.4s var(--ease);
+    opacity: 0; pointer-events: none;
+    transform: translateY(-10px); /* Slight slide-down effect */
+    transition: all 0.3s var(--ease);
   }
 
-  /* 2. Fade in when open */
+  /* 2. Fade and slide in when open */
   .nav-links.open {
     opacity: 1; pointer-events: auto;
+    transform: translateY(0);
   }
 
-  /* 3. Big, beautiful editorial typography */
+  /* 3. Scaled down editorial typography */
   .nav-links a { 
     font-family: var(--font-display);
-    font-size: 36px; 
-    text-transform: none; /* Removes the all-caps */
-    letter-spacing: 0;
+    font-size: 28px; /* Scaled down from 36px to fit the card */
+    text-transform: none; 
     color: var(--text-mid);
-    transform: translateY(15px); /* Sets up a slide-up animation */
-    transition: color 0.2s, transform 0.4s var(--ease);
-  }
-
-  /* 4. Slide the text up when opened */
-  .nav-links.open a {
-    transform: translateY(0);
+    transition: color 0.2s;
   }
 
   .nav-links a.active { 
     color: var(--text); 
-    border-bottom: none; 
-    font-style: italic; /* Elegant active state */
+    font-style: italic; 
   }
   
-  /* Put the hamburger button above the overlay */
   .hamburger { display: flex; z-index: 200; }
   
   .hero { padding: 56px 24px 48px; min-height: auto; }
