@@ -34,7 +34,7 @@ const ALBUMS = [
     desc: 'A 25-song original cast recording for the full theatrical production. Music by Robby Good, Matthew Deegan, and Abigail Torrence; lyrics by Matthew Deegan and Robby Good; book by Matthew Deegan.',
     meta: [
       ['Format', 'Album'],
-      ['Label',  'Robby Good Music']
+      ['Label',  'Robby Good Music'],
       ['Genre',  'Musical Theatre'],
       ['Year',   '2025'],
     ],
