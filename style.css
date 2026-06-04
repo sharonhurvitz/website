@@ -637,3 +637,18 @@ button, input, textarea, select { font-family: var(--font-body); }
   transition: width 0.1s linear;
   pointer-events: none;
 }
+/* ── FOOTER SOCIAL ICONS ── */
+.footer-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.footer-links a {
+  color: var(--text-muted);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+.footer-links a:hover {
+  color: var(--text);
+}
