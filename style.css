@@ -722,11 +722,16 @@ button, input, textarea, select { font-family: var(--font-body); }
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 100%;
+  height: 600px;
 }
-.comp-sidebar .comp-card--cta {
+.comp-sidebar .single-card {
   flex: 1;
-  min-height: 80px;
+}
+.comp-sidebar .single-art-wrap {
+  width: 90px;
+}
+.comp-card--cta {
+  height: 600px;
 }
 
 /* Singles */
@@ -796,5 +801,7 @@ button, input, textarea, select { font-family: var(--font-body); }
 
 @media (max-width: 900px) {
   .comp-layout { grid-template-columns: 1fr; }
-  .comp-sidebar { flex-direction: column; }
+  .comp-main { height: auto; overflow-y: visible; }
+  .comp-sidebar { height: auto; flex-direction: column; }
+  .comp-card--cta { height: 200px; }
 }
