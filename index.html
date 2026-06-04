@@ -86,51 +86,92 @@
     </footer>
   </main>
 
-  <!-- ── COMPOSITION ── -->
-  <main id="page-composition" class="page">
-    <section class="sec reveal">
-      <p class="sec-label">Composition — original releases</p>
-      <div class="comp-grid">
+ <!-- ── COMPOSITION ── -->
+<main id="page-composition" class="page">
+  <section class="sec reveal">
+    <p class="sec-label">Composition — original releases</p>
+    <div class="comp-grid">
 
-        <div class="comp-card">
-          <img src="images/newleaf.png" alt="Clangen Vol. 1: Newleaf album art" />
-          <div class="comp-card-body">
-            <h2 class="comp-title">Clangen Vol. 1: Newleaf</h2>
-            <p class="comp-sub">Sharon Hurvitz · 2024 · Self-released</p>
-            <p class="comp-roles">Composer · Producer · Mastering engineer</p>
-            <div class="tracklist">
-              <div class="track"><span class="tn">1</span><span>Generations</span></div>
-              <div class="track"><span class="tn">2</span><span>Crossing the River</span></div>
-              <div class="track"><span class="tn">3</span><span>Newleaf</span></div>
-              <div class="track"><span class="tn">4</span><span>Ancient Tunnels</span></div>
-              <div class="track"><span class="tn">5</span><span>The Medicine Cat's Den</span></div>
-              <div class="track"><span class="tn">6</span><span>Dawn Patrol</span></div>
-              <div class="track"><span class="tn">7</span><span>The Moonstone</span></div>
-              <div class="track"><span class="tn">8</span><span>Leafbare</span></div>
-              <div class="track"><span class="tn">9</span><span>Moonhigh Vigil</span></div>
+      <div class="comp-card">
+        <img src="images/newleaf.png" alt="Clangen Vol. 1: Newleaf album art" />
+        <div class="comp-card-body">
+          <h2 class="comp-title">Clangen Vol. 1: Newleaf</h2>
+          <p class="comp-sub">Sharon Hurvitz · 2024 · Self-released</p>
+          <p class="comp-roles">Composer · Producer · Mastering engineer</p>
+          <div class="tracklist" id="newleaf-tracklist">
+            <div class="track" data-src="audio/01 Generations.mp3">
+              <button class="track-play" aria-label="Play Generations">&#9654;</button>
+              <span class="tn">1</span>
+              <span class="track-name">Generations</span>
+              <span class="track-duration"></span>
             </div>
-            <!-- REELCRAFTER EMBED — paste your embed code below when ready -->
-            <div class="player-placeholder" id="reelcrafter-player">
-              <p>&#9654; Audio player coming soon</p>
+            <div class="track" data-src="audio/02 Crossing the River.mp3">
+              <button class="track-play" aria-label="Play Crossing the River">&#9654;</button>
+              <span class="tn">2</span>
+              <span class="track-name">Crossing the River</span>
+              <span class="track-duration"></span>
+            </div>
+            <div class="track" data-src="audio/03 Newleaf.mp3">
+              <button class="track-play" aria-label="Play Newleaf">&#9654;</button>
+              <span class="tn">3</span>
+              <span class="track-name">Newleaf</span>
+              <span class="track-duration"></span>
+            </div>
+            <div class="track" data-src="audio/04 Ancient Tunnels.mp3">
+              <button class="track-play" aria-label="Play Ancient Tunnels">&#9654;</button>
+              <span class="tn">4</span>
+              <span class="track-name">Ancient Tunnels</span>
+              <span class="track-duration"></span>
+            </div>
+            <div class="track" data-src="audio/05 The Medicine Cat's Den.mp3">
+              <button class="track-play" aria-label="Play The Medicine Cat's Den">&#9654;</button>
+              <span class="tn">5</span>
+              <span class="track-name">The Medicine Cat's Den</span>
+              <span class="track-duration"></span>
+            </div>
+            <div class="track" data-src="audio/06 Dawn Patrol.mp3">
+              <button class="track-play" aria-label="Play Dawn Patrol">&#9654;</button>
+              <span class="tn">6</span>
+              <span class="track-name">Dawn Patrol</span>
+              <span class="track-duration"></span>
+            </div>
+            <div class="track" data-src="audio/07 The Moonstone.mp3">
+              <button class="track-play" aria-label="Play The Moonstone">&#9654;</button>
+              <span class="tn">7</span>
+              <span class="track-name">The Moonstone</span>
+              <span class="track-duration"></span>
+            </div>
+            <div class="track" data-src="audio/08 Leafbare.mp3">
+              <button class="track-play" aria-label="Play Leafbare">&#9654;</button>
+              <span class="tn">8</span>
+              <span class="track-name">Leafbare</span>
+              <span class="track-duration"></span>
+            </div>
+            <div class="track" data-src="audio/09 Moonhigh Vigil.mp3">
+              <button class="track-play" aria-label="Play Moonhigh Vigil">&#9654;</button>
+              <span class="tn">9</span>
+              <span class="track-name">Moonhigh Vigil</span>
+              <span class="track-duration"></span>
             </div>
           </div>
         </div>
-
-        <div class="comp-card comp-card--cta" onclick="showPage('contact')">
-          <div class="cta-inner">
-            <span class="cta-plus">+</span>
-            <p class="cta-text">Commission a composition</p>
-            <p class="cta-sub">Film · sync · collaborative</p>
-          </div>
-        </div>
-
       </div>
-    </section>
-    <footer class="footer">
-      <span>© 2026 Sharon Hurvitz</span>
-      <span>sharonhurvitzmusic.com</span>
-    </footer>
-  </main>
+
+      <div class="comp-card comp-card--cta" onclick="showPage('contact')">
+        <div class="cta-inner">
+          <span class="cta-plus">+</span>
+          <p class="cta-text">Commission a composition</p>
+          <p class="cta-sub">Film · sync · collaborative</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <footer class="footer">
+    <span>© 2026 Sharon Hurvitz</span>
+    <span>sharonhurvitzmusic.com</span>
+  </footer>
+</main>
 
   <!-- ── CONTACT ── -->
   <section id="page-contact" class="page sec">
