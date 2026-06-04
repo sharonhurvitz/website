@@ -710,7 +710,7 @@ button, input, textarea, select { font-family: var(--font-body); }
 /* ── COMPOSITION LAYOUT ── */
 .comp-layout {
   display: grid;
-  grid-template-columns: 1.35fr 1fr 1fr; 
+  grid-template-columns: 1.1fr 1fr 1fr;
   gap: 20px;
   align-items: start;
 }
