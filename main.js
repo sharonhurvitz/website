@@ -53,7 +53,7 @@ const ALBUMS = [
       ['Format', 'Album'],
       ['Label',  'Rhymoi Music (瑞鸣音乐)'],
       ['Genre',  'World / Classical'],
-      ['Year',   '2024'],
+      ['Year',   '2025'],
     ],
   },
   {
