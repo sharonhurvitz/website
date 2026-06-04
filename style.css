@@ -474,15 +474,50 @@ button, input, textarea, select { font-family: var(--font-body); }
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .nav { padding: 16px 24px; }
-  .nav-links { display: none; }
-  .nav-links.open {
+  
+  /* 1. The Full-Screen Overlay */
+  .nav-links { 
     display: flex; flex-direction: column;
-    position: fixed; inset: 0;
-    background: var(--bg); z-index: 150;
-    justify-content: center; align-items: center; gap: 32px;
+    justify-content: center; align-items: center; gap: 40px;
+    position: fixed; 
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: var(--bg); /* Solid background blocks out the main page */
+    z-index: 150; 
+    opacity: 0; pointer-events: none; /* Hidden smoothly */
+    transition: opacity 0.4s var(--ease);
   }
-  .nav-links.open a { font-size: 18px; }
-  .hamburger { display: flex; }
+
+  /* 2. Fade in when open */
+  .nav-links.open {
+    opacity: 1; pointer-events: auto;
+  }
+
+  /* 3. Big, beautiful editorial typography */
+  .nav-links a { 
+    font-family: var(--font-display);
+    font-size: 36px; 
+    text-transform: none; /* Removes the all-caps */
+    letter-spacing: 0;
+    color: var(--text-mid);
+    transform: translateY(15px); /* Sets up a slide-up animation */
+    transition: color 0.2s, transform 0.4s var(--ease);
+  }
+
+  /* 4. Slide the text up when opened */
+  .nav-links.open a {
+    transform: translateY(0);
+  }
+
+  .nav-links a.active { 
+    color: var(--text); 
+    border-bottom: none; 
+    font-style: italic; /* Elegant active state */
+  }
+  
+  /* Put the hamburger button above the overlay */
+  .hamburger { display: flex; z-index: 200; }
+  
   .hero { padding: 56px 24px 48px; min-height: auto; }
   .hero-name { font-size: 36px; }
   .sec { padding: 48px 24px; }
