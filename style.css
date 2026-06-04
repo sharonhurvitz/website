@@ -714,38 +714,24 @@ button, input, textarea, select { font-family: var(--font-body); }
   gap: 16px;
   align-items: start;
 }
+/* ── COMP MAIN: STACKED BANNER LAYOUT ── */
 .comp-main {
+  display: block; /* Reverts back to stacked (image on top of text) */
   height: auto;
-  display: flex; /* Use flexbox to arrange children side-by-side */
-  flex-direction: row; /* Ensure elements flow horizontally */
 }
 
-/* Control the image size and prevent it from stretching */
+/* Turns the massive square into a sleek, wide editorial banner */
 .comp-main > img {
-  width: 40%; /* Adjust this percentage to balance art vs. tracklist width */
-  max-width: 400px; /* Prevent the image from getting too large */
-  object-fit: cover;
-  align-self: flex-start; /* Keep the image at the top */
+  width: 100%;
+  height: 280px; /* Locks the height so the tracks stay visible below */
+  aspect-ratio: auto; /* Overrides the default square shape */
+  object-fit: cover; /* Crops the art beautifully to fit the banner */
+  object-position: center; 
 }
 
-/* Ensure the text content takes up the remaining space */
 .comp-main .comp-card-body {
-  width: 60%; 
-  padding: 24px; /* Give the text some breathing room */
-}
-
-/* Stack the elements back vertically on smaller screens */
-@media (max-width: 1024px) {
-  .comp-main {
-    flex-direction: column;
-  }
-  .comp-main > img {
-    width: 100%;
-    max-width: none;
-  }
-  .comp-main .comp-card-body {
-    width: 100%;
-  }
+  width: 100%;
+  padding: 20px 24px; 
 }
 .comp-sidebar {
   display: flex;
