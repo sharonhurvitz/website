@@ -710,12 +710,13 @@ button, input, textarea, select { font-family: var(--font-body); }
 /* ── COMPOSITION LAYOUT ── */
 .comp-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
-  align-items: stretch;
+  align-items: start;
 }
 .comp-main {
-  height: 100%;
+  height: 600px;
+  overflow-y: auto;
 }
 .comp-sidebar {
   display: flex;
