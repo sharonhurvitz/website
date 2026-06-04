@@ -236,49 +236,16 @@ window.openAlbum = function(id) {
   const area = document.getElementById('album-detail');
   if (!area) return;
 
-  // Extract 'Label' and 'Year' so they don't double up in the tags row
+  // Extract the 'Label' to put under credits, keep the rest for the tags row
   let labelVal = '';
   const tags = [];
   album.meta.forEach(([k, v]) => {
     if (k.toLowerCase() === 'label') {
       labelVal = v;
-    } else if (k.toLowerCase() === 'year') {
-      // Do nothing, we handle the year directly below
     } else {
-      tags.push(`${k}: ${v}`); 
+      tags.push(`${k}: ${v}`); // Format like "Genre: Indie pop"
     }
   });
-
-  area.innerHTML = `
-    <div class="album-detail-minimal">
-      <button class="detail-back" onclick="closeAlbumDetail()">Back to all credits</button>
-      
-      <div class="album-hero-split">
-        <img src="${album.img}" alt="${album.title} album art" class="album-hero-img" />
-        
-        <div class="album-hero-text">
-          <h2 class="album-hero-artist">${album.artist}</h2>
-          <h3 class="album-hero-title">"${album.title}"</h3>
-          
-          <div class="album-hero-credits">
-            <p>Credits: ${album.role}</p>
-            <p>Released: ${album.year}</p>
-            ${labelVal ? `<p>Label: ${labelVal}</p>` : ''}
-          </div>
-        </div>
-      </div>
-
-      <div class="album-hero-tags">
-        ${tags.join(' &nbsp;&nbsp;|&nbsp;&nbsp; ')}
-      </div>
-    </div>
-  `;
-
-  // Scroll detail into view smoothly
-  requestAnimationFrame(() => {
-    area.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-};
 
   area.innerHTML = `
     <div class="album-detail-minimal">
