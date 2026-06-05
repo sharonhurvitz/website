@@ -540,3 +540,90 @@ if (contactForm) {
     }
   };
 })();
+// ── SINGLE CARD AUDIO PLAYER ─────────────────────────────────
+(function initSinglePlayer() {
+  let currentAudio = null;
+  let currentCard = null;
+
+  function formatTime(s) {
+    if (isNaN(s)) return '';
+    return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+  }
+
+  function stopCurrent() {
+    if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+    if (currentCard) {
+      currentCard.classList.remove('playing');
+      const btn = currentCard.querySelector('.single-play-btn');
+      const bar = currentCard.querySelector('.single-progress-bar');
+      if (btn) btn.innerHTML = '&#9654; Play';
+      if (bar) bar.classList.remove('visible');
+    }
+    currentAudio = null;
+    currentCard = null;
+  }
+
+  function bindSingles() {
+    document.querySelectorAll('.single-card[data-single-src]').forEach(card => {
+      if (card.dataset.singleBound) return;
+      card.dataset.singleBound = 'true';
+
+      const src = card.dataset.singleSrc;
+      const btn = card.querySelector('.single-play-btn');
+      const bar = card.querySelector('.single-progress-bar');
+      const fill = card.querySelector('.single-progress-fill');
+      const dur = card.querySelector('.single-duration');
+      if (!btn || !bar || !fill) return;
+
+      const audio = new Audio();
+      audio.preload = 'metadata';
+      audio.src = src;
+      audio.addEventListener('loadedmetadata', () => {
+        if (dur) dur.textContent = formatTime(audio.duration);
+      });
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentCard === card) {
+          if (audio.paused) {
+            audio.play();
+            btn.innerHTML = '&#9646;&#9646; Pause';
+          } else {
+            audio.pause();
+            btn.innerHTML = '&#9654; Play';
+          }
+          return;
+        }
+        stopCurrent();
+        currentAudio = audio;
+        currentCard = card;
+        card.classList.add('playing');
+        btn.innerHTML = '&#9646;&#9646; Pause';
+        bar.classList.add('visible');
+        audio.play().catch(err => console.warn('Playback failed:', err));
+      });
+
+      bar.addEventListener('click', (e) => {
+        if (currentCard !== card || !currentAudio) return;
+        const rect = bar.getBoundingClientRect();
+        currentAudio.currentTime = ((e.clientX - rect.left) / rect.width) * currentAudio.duration;
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (currentCard !== card) return;
+        fill.style.width = ((audio.currentTime / audio.duration) * 100) + '%';
+      });
+
+      audio.addEventListener('ended', () => stopCurrent());
+    });
+  }
+
+  bindSingles();
+
+  const origShowPage = window.showPage;
+  window.showPage = function(name) {
+    origShowPage(name);
+    if (name === 'composition') requestAnimationFrame(bindSingles);
+    if (name !== 'composition') stopCurrent();
+  };
+})();
