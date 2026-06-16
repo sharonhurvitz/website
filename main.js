@@ -444,6 +444,10 @@ if (contactForm) {
   // Re-check reveal on scroll
   window.addEventListener('scroll', checkReveal, { passive: true });
 })();
+// Shared stop functions so tracklist and singles can pause each other
+let stopTracklistPlayer = () => {};
+let stopSinglesPlayer = () => {};
+
 // ── TRACKLIST AUDIO PLAYER ──────────────────────────────────
 (function initTrackPlayer() {
   let currentAudio = null;
@@ -458,6 +462,7 @@ if (contactForm) {
   }
 
   function stopCurrent() {
+    stopSinglesPlayer(); // pause the singles player if it's running
     if (currentAudio) {
       currentAudio.pause();
       currentAudio.currentTime = 0;
@@ -556,10 +561,9 @@ if (contactForm) {
     if (name === 'composition') {
       requestAnimationFrame(bindTracks);
     }
-    if (name !== 'composition') {
-      stopCurrent();
-    }
+   if (name !== 'composition') stopCurrent();
   };
+  stopTracklistPlayer = stopCurrent;
 })();
 // ── SINGLE CARD AUDIO PLAYER ─────────────────────────────────
 (function initSinglePlayer() {
@@ -572,6 +576,7 @@ if (contactForm) {
   }
 
   function stopCurrent() {
+    stopTracklistPlayer(); // pause the tracklist player if it's running
     if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
     if (currentCard) {
       currentCard.classList.remove('playing');
@@ -647,4 +652,5 @@ if (contactForm) {
     if (name === 'composition') requestAnimationFrame(bindSingles);
     if (name !== 'composition') stopCurrent();
   };
+  stopSinglesPlayer = stopCurrent;
 })();
