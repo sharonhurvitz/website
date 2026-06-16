@@ -452,7 +452,7 @@ let stopSinglesPlayer = () => {};
 (function initTrackPlayer() {
   let currentAudio = null;
   let currentTrackEl = null;
-  let tracksInitialized = false;  // guard against double-binding
+  let tracksInitialized = false;  
 
   function formatTime(seconds) {
     if (isNaN(seconds)) return '';
@@ -462,7 +462,6 @@ let stopSinglesPlayer = () => {};
   }
 
   function stopCurrent() {
-    stopSinglesPlayer(); // pause the singles player if it's running
     if (currentAudio) {
       currentAudio.pause();
       currentAudio.currentTime = 0;
@@ -470,7 +469,7 @@ let stopSinglesPlayer = () => {};
     if (currentTrackEl) {
       currentTrackEl.classList.remove('playing');
       const btn = currentTrackEl.querySelector('.track-play');
-      if (btn) btn.innerHTML = '&#9654;';
+      if (btn) btn.innerHTML = '▶';
       const bar = currentTrackEl.querySelector('.track-progress-bar');
       if (bar) bar.classList.remove('visible');
     }
@@ -479,9 +478,9 @@ let stopSinglesPlayer = () => {};
   }
 
   function bindTracks() {
-    if (tracksInitialized) return;  // only ever bind once
+    if (tracksInitialized) return; 
     const tracks = document.querySelectorAll('.track[data-src]');
-    if (tracks.length === 0) return;  // page not rendered yet
+    if (tracks.length === 0) return; 
     tracksInitialized = true;
 
     tracks.forEach(trackEl => {
@@ -496,7 +495,6 @@ let stopSinglesPlayer = () => {};
         if (durationEl) durationEl.textContent = formatTime(audio.duration);
       });
 
-      // Build progress bar
       const progressBar = document.createElement('div');
       progressBar.className = 'track-progress-bar';
       progressBar.innerHTML = '<div class="track-progress-fill"></div>';
@@ -504,7 +502,6 @@ let stopSinglesPlayer = () => {};
       const progressFill = progressBar.querySelector('.track-progress-fill');
 
       trackEl.addEventListener('click', (e) => {
-        // Seeking via progress bar
         if (progressBar.contains(e.target)) {
           if (currentAudio && currentTrackEl === trackEl) {
             const rect = progressBar.getBoundingClientRect();
@@ -514,23 +511,23 @@ let stopSinglesPlayer = () => {};
         }
 
         if (currentTrackEl === trackEl) {
-          // Toggle same track
           if (currentAudio.paused) {
+            stopSinglesPlayer(); // <-- Safe spot!
             currentAudio.play();
-            btn.innerHTML = '&#9646;&#9646;';
+            btn.innerHTML = '▮▮';
           } else {
             currentAudio.pause();
-            btn.innerHTML = '&#9654;';
+            btn.innerHTML = '▶';
           }
           return;
         }
 
-        // New track
+        stopSinglesPlayer(); // <-- Safe spot!
         stopCurrent();
         currentAudio = audio;
         currentTrackEl = trackEl;
         trackEl.classList.add('playing');
-        btn.innerHTML = '&#9646;&#9646;';
+        btn.innerHTML = '▮▮';
         progressBar.classList.add('visible');
         audio.play().catch(err => console.warn('Playback failed:', err));
       });
@@ -551,10 +548,8 @@ let stopSinglesPlayer = () => {};
     });
   }
 
-  // Try to bind immediately (in case composition page is default)
   bindTracks();
 
-  // Hook into showPage to bind on first visit and stop audio on leave
   const origShowPage = window.showPage;
   window.showPage = function(name) {
     origShowPage(name);
@@ -563,8 +558,19 @@ let stopSinglesPlayer = () => {};
     }
    if (name !== 'composition') stopCurrent();
   };
-  stopTracklistPlayer = stopCurrent;
+  
+  // Custom pause function for the singles player to call
+  stopTracklistPlayer = () => {
+     if(currentAudio && !currentAudio.paused) {
+         currentAudio.pause();
+         if(currentTrackEl) {
+             const btn = currentTrackEl.querySelector('.track-play');
+             if(btn) btn.innerHTML = '▶';
+         }
+     }
+  };
 })();
+
 // ── SINGLE CARD AUDIO PLAYER ─────────────────────────────────
 (function initSinglePlayer() {
   let currentAudio = null;
@@ -576,13 +582,12 @@ let stopSinglesPlayer = () => {};
   }
 
   function stopCurrent() {
-    stopTracklistPlayer(); // pause the tracklist player if it's running
     if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
     if (currentCard) {
       currentCard.classList.remove('playing');
       const btn = currentCard.querySelector('.single-play-btn');
       const bar = currentCard.querySelector('.single-progress-bar');
-      if (btn) btn.innerHTML = '&#9654; Play';
+      if (btn) btn.innerHTML = '▶ Play';
       if (bar) bar.classList.remove('visible');
     }
     currentAudio = null;
@@ -612,19 +617,22 @@ let stopSinglesPlayer = () => {};
         e.stopPropagation();
         if (currentCard === card) {
           if (audio.paused) {
+            stopTracklistPlayer(); // <-- Safe spot!
             audio.play();
-            btn.innerHTML = '&#9646;&#9646; Pause';
+            btn.innerHTML = '▮▮ Pause';
           } else {
             audio.pause();
-            btn.innerHTML = '&#9654; Play';
+            btn.innerHTML = '▶ Play';
           }
           return;
         }
+        
+        stopTracklistPlayer(); // <-- Safe spot!
         stopCurrent();
         currentAudio = audio;
         currentCard = card;
         card.classList.add('playing');
-        btn.innerHTML = '&#9646;&#9646; Pause';
+        btn.innerHTML = '▮▮ Pause';
         bar.classList.add('visible');
         audio.play().catch(err => console.warn('Playback failed:', err));
       });
@@ -652,5 +660,15 @@ let stopSinglesPlayer = () => {};
     if (name === 'composition') requestAnimationFrame(bindSingles);
     if (name !== 'composition') stopCurrent();
   };
-  stopSinglesPlayer = stopCurrent;
+  
+  // Custom pause function for the tracklist player to call
+  stopSinglesPlayer = () => {
+     if(currentAudio && !currentAudio.paused) {
+         currentAudio.pause();
+         if(currentCard) {
+             const btn = currentCard.querySelector('.single-play-btn');
+             if(btn) btn.innerHTML = '▶ Play';
+         }
+     }
+  };
 })();
