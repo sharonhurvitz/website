@@ -176,7 +176,7 @@ const ALBUMS = [
 const pages   = document.querySelectorAll('.page');
 const navLinks = document.querySelectorAll('.nav-links a[data-page]');
 
-function showPage(name) {
+function showPage(name, pushState = true) {
   // Hide all pages
   pages.forEach(p => p.classList.remove('active'));
 
@@ -200,7 +200,28 @@ function showPage(name) {
 
   // Clear any open album detail when leaving discography
   if (name !== 'discography') closeAlbumDetail();
+
+  // Push to browser history so back button works
+  if (pushState) {
+    const url = name === 'home' ? '/' : '/' + name;
+    history.pushState({ page: name }, '', url);
+  }
 }
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', (e) => {
+  const page = e.state?.page || 'home';
+  showPage(page, false); // false = don't push another history entry
+});
+
+// On first load, set the initial history state
+(function setInitialState() {
+  const path = window.location.pathname.replace('/', '').replace(/\//g, '') || 'home';
+  const validPages = ['home', 'discography', 'bio', 'composition', 'contact'];
+  const page = validPages.includes(path) ? path : 'home';
+  history.replaceState({ page }, '', page === 'home' ? '/' : '/' + page);
+  if (page !== 'home') showPage(page, false);
+})();
 
 // Make showPage globally accessible for onclick attributes in HTML
 window.showPage = showPage;
