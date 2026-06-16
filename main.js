@@ -216,10 +216,21 @@ window.addEventListener('popstate', (e) => {
 
 // On first load, set the initial history state
 (function setInitialState() {
-  const path = window.location.pathname.replace('/', '').replace(/\//g, '') || 'home';
+  // Check if we were redirected from 404.html via query param
+  const params = new URLSearchParams(window.location.search);
+  const paramPage = params.get('page');
+  
+  const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '') || 'home';
   const validPages = ['home', 'discography', 'bio', 'composition', 'contact'];
-  const page = validPages.includes(path) ? path : 'home';
+  
+  // Decide which page to show based on the query or the path
+  const page = paramPage && validPages.includes(paramPage)
+    ? paramPage
+    : validPages.includes(path) ? path : 'home';
+    
+  // Clean up the URL — remove the ?page= query string so it looks clean again
   history.replaceState({ page }, '', page === 'home' ? '/' : '/' + page);
+  
   if (page !== 'home') showPage(page, false);
 })();
 
