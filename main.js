@@ -228,15 +228,17 @@ window.addEventListener('popstate', (e) => {
     
   history.replaceState({ page }, '', page === 'home' ? '/' : '/' + page);
   
-  // Wait for the browser to finish loading the page data...
-  window.addEventListener('load', () => {
-    // Show the correct page
-    if (page !== 'home') showPage(page, false);
-    
-    // Rip off the invisible cloak!
-    const cloak = document.getElementById('preload-hide');
-    if (cloak) cloak.remove();
-  });
+  if (page !== 'home') {
+    // Hide body instantly to prevent flash, then show correct page after load
+    document.body.style.opacity = '0';
+    window.addEventListener('load', () => {
+      showPage(page, false);
+      // Fade it back in smoothly!
+      document.body.style.transition = 'opacity 0.2s';
+      document.body.style.opacity = '1';
+    });
+  }
+  // Home page needs nothing — it's already active in the HTML, just leave it
 })();
 
 // Make showPage globally accessible for onclick attributes in HTML
