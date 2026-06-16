@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    // Grab the path from the URL, e.g. "/composition"
+    const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+    const validPages = ['home', 'discography', 'bio', 'composition', 'contact'];
+    
+    // Check if it's a real page, otherwise default to home
+    const page = validPages.includes(path) ? path : 'home';
+    
+    // Redirect to the root with the page stored as a secret query parameter
+    window.location.replace('/?page=' + page);
+  </script>
+</head>
+<body></body>
+</html>
