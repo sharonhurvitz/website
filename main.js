@@ -218,22 +218,25 @@ window.addEventListener('popstate', (e) => {
 (function setInitialState() {
   const params = new URLSearchParams(window.location.search);
   const paramPage = params.get('page');
-
+  
   const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '') || 'home';
   const validPages = ['home', 'discography', 'bio', 'composition', 'contact'];
-
+  
   const page = paramPage && validPages.includes(paramPage)
     ? paramPage
     : validPages.includes(path) ? path : 'home';
-
+    
   history.replaceState({ page }, '', page === 'home' ? '/' : '/' + page);
-
-  // Wait until everything is fully loaded before navigating to the right page
-  if (page !== 'home') {
-    window.addEventListener('load', () => {
-      showPage(page, false);
-    });
-  }
+  
+  // Wait for the browser to finish loading the page data...
+  window.addEventListener('load', () => {
+    // Show the correct page
+    if (page !== 'home') showPage(page, false);
+    
+    // Rip off the invisible cloak!
+    const cloak = document.getElementById('preload-hide');
+    if (cloak) cloak.remove();
+  });
 })();
 
 // Make showPage globally accessible for onclick attributes in HTML
